@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 
 interface PrivacyPolicyModalProps {
   isOpen: boolean;
@@ -11,37 +12,49 @@ export default function PrivacyPolicyModal({
   isOpen,
   onClose,
 }: PrivacyPolicyModalProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+    };
+    if (isOpen) window.addEventListener("keydown", handleKey);
+    return () => window.removeEventListener("keydown", handleKey);
+  }, [isOpen, onClose]);
 
-  return (
-    /* Full-screen overlay: fixed, covers everything, centered with flexbox */
+  if (!mounted || !isOpen) return null;
+
+  const modal = (
     <div
-      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/60 backdrop-blur-sm"
+      style={{ position: "fixed", inset: 0, zIndex: 99999 }}
+      className="flex items-center justify-center bg-black/60 backdrop-blur-sm p-4"
       onClick={(e) => {
         if (e.target === e.currentTarget) onClose();
       }}
     >
-      {/* Modal container */}
+      {/* Modal panel */}
       <div
-        className="relative bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden
-          w-[95vw] max-w-3xl
-          h-[90vh] max-h-[90vh]
-          sm:w-[90vw] sm:max-w-3xl sm:h-auto sm:max-h-[85vh]"
+        className="relative bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden w-full max-w-2xl"
+        style={{ maxHeight: "88vh" }}
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
-        <div className="bg-primary px-5 py-4 sm:px-8 sm:py-6 flex items-center justify-between shrink-0">
+        <div className="bg-primary px-6 py-5 flex items-center justify-between shrink-0">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-lg bg-white/10 items-center justify-center p-1.5 hidden sm:flex">
               <img
@@ -55,13 +68,13 @@ export default function PrivacyPolicyModal({
                 Privacy Policy
               </h2>
               <span className="text-[9px] uppercase tracking-[0.15em] text-white/40 font-label font-bold hidden sm:block">
-                Regulatory Compliance & Data Protection
+                Regulatory Compliance &amp; Data Protection
               </span>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all cursor-pointer"
+            className="w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center transition-all cursor-pointer shrink-0"
             aria-label="Close modal"
           >
             <span className="material-symbols-outlined text-white text-xl">
@@ -71,7 +84,7 @@ export default function PrivacyPolicyModal({
         </div>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-5 py-6 sm:px-10 sm:py-10">
+        <div className="flex-1 overflow-y-auto px-6 py-8 sm:px-10 sm:py-10">
           <div className="max-w-2xl mx-auto">
             {/* Metadata */}
             <div className="flex flex-wrap items-center gap-4 sm:gap-6 mb-8 pb-6 border-b border-gray-200">
@@ -213,9 +226,7 @@ export default function PrivacyPolicyModal({
                 <h3 className="text-lg font-headline text-primary italic mb-3">
                   5. Sovereignty Over Your Data
                 </h3>
-                <p className="mb-2">
-                  You maintain irrevocable rights to:
-                </p>
+                <p className="mb-2">You maintain irrevocable rights to:</p>
                 <ul className="list-disc pl-5 space-y-1 text-sm text-gray-600">
                   <li>Inquire about processed data subsets.</li>
                   <li>Rectify historical inaccuracies.</li>
@@ -227,7 +238,7 @@ export default function PrivacyPolicyModal({
               {/* Contact */}
               <section className="pt-6 border-t border-gray-200">
                 <h3 className="text-lg font-headline text-primary italic mb-3">
-                  Inquiries & Compliance
+                  Inquiries &amp; Compliance
                 </h3>
                 <p className="text-sm mb-4">
                   For matters concerning this policy or specialized data handling
@@ -258,7 +269,7 @@ export default function PrivacyPolicyModal({
         </div>
 
         {/* Footer */}
-        <div className="bg-gray-50 px-5 py-3 sm:px-8 sm:py-4 border-t border-gray-200 flex items-center justify-between shrink-0">
+        <div className="bg-gray-50 px-6 py-4 border-t border-gray-200 flex items-center justify-between shrink-0">
           <p className="text-[10px] text-gray-400 font-label uppercase tracking-widest hidden sm:block">
             © {new Date().getFullYear()} TechShield Legal Services
           </p>
@@ -266,7 +277,7 @@ export default function PrivacyPolicyModal({
             onClick={onClose}
             className="btn-base bg-primary text-white w-full sm:w-auto px-8 py-3 hover:bg-tertiary transition-all cursor-pointer flex items-center justify-center gap-2 text-sm"
           >
-            Acknowledge & Close
+            Acknowledge &amp; Close
             <span className="material-symbols-outlined text-sm">
               check_circle
             </span>
@@ -275,4 +286,6 @@ export default function PrivacyPolicyModal({
       </div>
     </div>
   );
+
+  return createPortal(modal, document.body);
 }

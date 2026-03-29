@@ -64,7 +64,7 @@ function ContactForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
     // Clear error for this field
@@ -77,7 +77,7 @@ function ContactForm() {
     }
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) {
       setStatus({ type: "error", message: "Please correct the errors before submitting." });
@@ -102,11 +102,12 @@ function ContactForm() {
             preferred_date: formData.date,
             preferred_time: formData.time,
           }
-        : {
+          : {
             name: formData.name,
             email: formData.email,
             phone: `${formData.countryCode}${formData.phone}`,
             country: formData.country,
+            service_type: formData.service, // Added service_type mapping
             message: formData.message,
           };
 
@@ -129,6 +130,8 @@ function ContactForm() {
           name: "",
           email: "",
           phone: "",
+          country: "NG",
+          countryCode: "+234",
           service: "",
           message: "",
           date: "",
@@ -138,7 +141,11 @@ function ContactForm() {
         throw new Error(result.error || "Something went wrong.");
       }
     } catch (err) {
-      setStatus({ type: "error", message: err.message });
+      console.error("Submission error:", err);
+      setStatus({ 
+        type: "error", 
+        message: err instanceof Error ? err.message : "An unexpected error occurred. Please try again later." 
+      });
     } finally {
       setLoading(false);
     }
@@ -413,12 +420,13 @@ function ContactForm() {
                 <div className="relative z-10 flex flex-col gap-3">
                   {[
                     {
-                      icon: "data:image/jpeg;base64,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",
-                      iconType: "svg",
+                      icon: "/assets/whatapp-icon.png",
+                      iconType: "image",
                       label: "WhatsApp",
                       value: "Direct Consultation",
-                      bg: "bg-tertiary",
+                      bg: "",
                       href: process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#",
+                      isLink: true,
                     },
                     {
                       icon: "mail",
@@ -426,44 +434,56 @@ function ContactForm() {
                       label: "Primary Desk",
                       value: "enquiries@techshieldlegal.com",
                       bg: "bg-surface-container-highest",
-                      href: "mailto:enquiries@techshieldlegal.com",
+                      isLink: false,
                     },
-                  ].map((item) => (
-                    <Link
-                      key={item.label}
-                      href={item.href}
-                      target={item.label === "WhatsApp" ? "_blank" : undefined}
-                      className="flex items-center gap-4 rounded-lg bg-white/10 backdrop-blur-sm p-4 hover:bg-white/20 transition-all border border-white/5 group"
-                    >
-                      <div
-                        className={`w-10 h-10 rounded-full ${item.bg} flex items-center justify-center shrink-0`}
-                      >
-                        {item.iconType === "svg" ? (
-                          <img
-                            src={item.icon}
-                            alt={`${item.label} icon`}
-                            className="w-5 h-5 brightness-110 transition-all duration-300"
-                            style={{
-                              filter:
-                                "drop-shadow(0 0 8px rgba(34,197,94,0.8)) hue-rotate(90deg) saturate(1.5)",
-                            }}
-                          />
-                        ) : (
-                          <span className="material-symbols-outlined text-primary text-xl">
-                            {item.icon}
+                  ].map((item) => {
+                    const Content = (
+                      <>
+                        <div
+                          className={`w-10 h-10 rounded-full ${item.bg} flex items-center justify-center shrink-0 overflow-hidden`}
+                        >
+                          {item.iconType === "svg" || item.iconType === "image" ? (
+                            <img
+                              src={item.icon}
+                              alt={`${item.label} icon`}
+                              className="w-full h-full object-contain p-1.5"
+                            />
+                          ) : (
+                            <span className="material-symbols-outlined text-primary text-xl">
+                              {item.icon}
+                            </span>
+                          )}
+                        </div>
+                        <div className="min-w-0">
+                          <span className="block text-xs uppercase tracking-widest text-on-primary-container font-label mb-0.5">
+                            {item.label}
                           </span>
-                        )}
+                          <span className="text-sm font-medium truncate block">
+                            {item.value}
+                          </span>
+                        </div>
+                      </>
+                    );
+
+                    return item.isLink ? (
+                      <Link
+                        key={item.label}
+                        href={item.href!}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-4 rounded-lg bg-white/10 backdrop-blur-sm p-4 hover:bg-white/20 transition-all border border-white/5 group"
+                      >
+                        {Content}
+                      </Link>
+                    ) : (
+                      <div
+                        key={item.label}
+                        className="flex items-center gap-4 rounded-lg bg-white/10 backdrop-blur-sm p-4 border border-white/5"
+                      >
+                        {Content}
                       </div>
-                      <div className="min-w-0">
-                        <span className="block text-xs uppercase tracking-widest text-on-primary-container font-label mb-0.5">
-                          {item.label}
-                        </span>
-                        <span className="text-sm font-medium truncate block">
-                          {item.value}
-                        </span>
-                      </div>
-                    </Link>
-                  ))}
+                    );
+                  })}
                 </div>
               </div>
             </FadeIn>
@@ -471,18 +491,23 @@ function ContactForm() {
             {/* Office Card */}
             <FadeIn direction="right" delay={200}>
               <div className="card-lift rounded-xl bg-surface-container-low overflow-hidden flex flex-col h-full border border-outline-variant/10">
-                {/* Visual Header for Chambers */}
-                <div className="h-48 relative">
-                  <img 
-                    src="/assets/practice-areas/real-estate.png" 
-                    alt="Law Chambers"
-                    className="w-full h-full object-cover"
+                {/* Premium Interactive Mini Map */}
+                <div className="h-56 relative group">
+                  <iframe
+                    title="TechShield Legal Abuja Office"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.818043685806!2d7.4725!3d9.07!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0af9a4f9a4f9%3A0x1234567890abcdef!2sDBM%20Plaza!5e0!3m2!1sen!2sng!4v1711690000000!5m2!1sen!2sng&q=DBM+Plaza+Aminu+Kano+Crescent+Wuse+II+Abuja"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0, filter: "grayscale(1) contrast(1.1) brightness(0.9)" }}
+                    allowFullScreen={true}
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="absolute inset-0 transition-all duration-700 group-hover:grayscale-0 group-hover:brightness-100"
                   />
-                  <div className="absolute inset-0 bg-primary/40 backdrop-blur-[2px]" />
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <span className="material-symbols-outlined text-white text-5xl opacity-40">
-                      gavel
-                    </span>
+                  <div className="absolute inset-0 pointer-events-none border border-white/5 m-3 rounded-lg" />
+                  <div className="absolute top-4 left-4 bg-primary/90 backdrop-blur-md px-3 py-1.5 rounded text-[10px] font-label font-bold uppercase tracking-[0.2em] text-white flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-tertiary animate-pulse" />
+                    Live Location
                   </div>
                 </div>
                 
@@ -507,7 +532,7 @@ function ContactForm() {
                       <span className="material-symbols-outlined text-base">
                         location_on
                       </span>
-                      <span>Visit Us</span>
+        
                     </div>
                     <span className="w-12 h-px bg-tertiary/30" />
                   </div>

@@ -226,16 +226,16 @@ export default function Page() {
               We bring multidisciplinary legal expertise with a business-focused
               mindset, delivering practical advice for sophisticated clients.
             </p>
-            <div className="flex flex-col sm:flex-row gap-6 md:gap-8 justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-8 justify-center">
               <Link
                 href="/contact"
-                className="btn-base bg-white text-primary px-8 md:px-12 py-5 md:py-6 hover:bg-tertiary hover:text-white shadow-2xl text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
+                className="btn-base bg-white text-primary w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 hover:bg-tertiary hover:text-white shadow-2xl text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
               >
                 Book Strategy Session
               </Link>
               <Link
                 href="/practice-areas"
-                className="btn-base border border-white/30 text-white px-8 md:px-12 py-5 md:py-6 hover:bg-white/10 text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
+                className="btn-base border border-white/30 text-white w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 hover:bg-white/10 text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
               >
                 Practice Areas
               </Link>

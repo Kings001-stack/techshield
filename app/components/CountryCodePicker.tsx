@@ -61,20 +61,20 @@ export default function CountryCodePicker({
       <button
         type="button"
         onClick={() => setIsOpen(!isOpen)}
-        className="sig-input !w-32 flex items-center justify-between gap-2 cursor-pointer hover:border-tertiary transition-colors h-full px-4 !rounded-r-none border-r-0 bg-surface-container-low"
+        className="w-32 flex items-center justify-between gap-1 cursor-pointer hover:border-outline transition-all h-full px-3 border-1.5 border-outline-variant border-r-0 rounded-l-md bg-surface-container-low hover:bg-white group"
       >
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <img 
             src={`https://flagsapi.com/${selectedCountry.code}/flat/32.png`} 
             alt={selectedCountry.code}
-            className="w-5 h-auto grayscale-[0.2] brightness-110"
+            className="w-5 h-auto shrink-0"
           />
-          <span className="text-xs font-bold tracking-tight text-primary">
+          <span className="text-[13px] font-bold text-primary shrink-0">
             {selectedCountry.dial_code}
           </span>
         </div>
         <span
-          className={`material-symbols-outlined text-sm transition-transform duration-300 text-on-surface-variant ${isOpen ? "rotate-180" : ""}`}
+          className={`material-symbols-outlined text-base transition-transform duration-300 text-on-surface-variant flex items-center justify-center h-full ${isOpen ? "rotate-180" : ""}`}
         >
           expand_more
         </span>

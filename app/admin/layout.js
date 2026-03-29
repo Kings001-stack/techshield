@@ -2,53 +2,108 @@
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { supabase } from "@/lib/supabase";
+import SignOutButton from "./components/SignOutButton";
 
 export default function AdminLayout({ children }) {
   const pathname = usePathname();
   const router = useRouter();
+  const isLoginPage = pathname === "/admin/login";
   const [loading, setLoading] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [counts, setCounts] = useState({ contacts: 0 });
+
+  const fetchCounts = async () => {
+    try {
+      // Fetch unread count
+      const resC = await fetch("/api/admin/contacts?unread=true");
+      const dataC = await resC.json();
+      
+      if (Array.isArray(dataC)) {
+        setCounts({
+          contacts: dataC.length 
+        });
+      }
+    } catch (err) {
+      console.error("[AdminAuth] Count fetch failed:", err);
+    }
+  };
+
+  // Use a ref to always have the latest pathname in the subscription closure
+  // without re-creating the subscription on every navigation
+  const pathnameRef = useRef(pathname);
+  useEffect(() => {
+    pathnameRef.current = pathname;
+  }, [pathname]);
 
   useEffect(() => {
-    // Initial check
+    let active = true;
+
     const checkUser = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      setLoading(false);
+      // If we're on the login page, just clear the loading state
+      if (pathnameRef.current === "/admin/login") {
+        setLoading(false);
+        return;
+      }
+
+      try {
+        const { data: { session } } = await supabase.auth.getSession();
+        if (!active) return;
+
+        if (!session) {
+          router.push("/admin/login");
+          return;
+        }
+
+        setLoading(false);
+        fetchCounts();
+      } catch (err) {
+        if (active) {
+          setLoading(false);
+          router.push("/admin/login");
+        }
+      }
     };
+
     checkUser();
 
-    // Listen for auth changes
+    // Subscribe ONCE. Use the ref to read the current path so we never need
+    // to re-create this subscription when the user navigates between pages.
     const { data: { subscription } } = supabase.auth.onAuthStateChange((event, session) => {
-      if (!session && event === 'SIGNED_OUT') {
+      const currentPath = pathnameRef.current;
+      if (event === 'SIGNED_IN' && currentPath === "/admin/login" && session) {
+        router.push("/admin/contacts");
+      }
+      if (event === 'SIGNED_OUT') {
         router.push("/admin/login");
       }
     });
 
-    return () => subscription.unsubscribe();
-  }, [router]);
+    window.addEventListener("registryUpdated", fetchCounts);
 
-  // Close sidebar on navigation (mobile)
+    return () => {
+      active = false;
+      subscription.unsubscribe();
+      window.removeEventListener("registryUpdated", fetchCounts);
+    };
+  // Empty array = run ONCE on mount only. The ref keeps the closure fresh.
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Handle mobile sidebar close on path change
   useEffect(() => {
     setIsSidebarOpen(false);
   }, [pathname]);
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut();
-    router.push("/admin/login");
-  };
-
-  if (loading) return <div className="min-h-screen bg-surface flex items-center justify-center font-headline text-3xl italic text-primary animate-pulse">Initializing Secured Environment...</div>;
-
-  // If we are at /admin/login, we use a separate minimal view
-  if (pathname === "/admin/login") {
+  // If on login page, just show children
+  if (isLoginPage) {
     return <div className="min-h-screen bg-surface">{children}</div>;
   }
 
+
   const navLinks = [
-    { label: "Bookings", href: "/admin/bookings", icon: "event_available" },
-    { label: "Contact Inquiries", href: "/admin/contacts", icon: "mail" },
+    { label: "Contact Inquiries", href: "/admin/contacts", icon: "mail", count: counts.contacts },
     { label: "Settings & Security", href: "/admin/profile", icon: "security" },
   ];
 
@@ -106,14 +161,23 @@ export default function AdminLayout({ children }) {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`flex items-center gap-4 p-4 rounded-lg font-label text-sm uppercase tracking-widest transition-all ${
+                  className={`flex items-center justify-between p-4 rounded-lg font-label text-sm uppercase tracking-widest transition-all ${
                     isActive
                       ? "bg-primary text-on-primary font-bold shadow-lg"
                       : "hover:bg-primary/5 text-on-surface-variant opacity-70 hover:opacity-100"
                   }`}
                 >
-                  <span className="material-symbols-outlined text-xl">{link.icon}</span>
-                  {link.label}
+                  <div className="flex items-center gap-4">
+                    <span className="material-symbols-outlined text-xl">{link.icon}</span>
+                    {link.label}
+                  </div>
+                  {link.count > 0 && (
+                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-bold ${
+                        isActive ? "bg-white text-primary" : "bg-primary text-white"
+                    } animate-pulse`}>
+                        {link.count}
+                    </span>
+                  )}
                 </Link>
               );
             })}
@@ -121,13 +185,7 @@ export default function AdminLayout({ children }) {
         </div>
 
         <div className="pt-8 border-t border-outline-variant/10">
-          <button
-            onClick={handleSignOut}
-            className="flex items-center gap-4 p-4 w-full rounded-lg font-label text-sm uppercase tracking-widest text-red-600 hover:bg-red-50 transition-all"
-          >
-            <span className="material-symbols-outlined text-xl">logout</span>
-            Sign Out
-          </button>
+          <SignOutButton />
         </div>
       </aside>
 

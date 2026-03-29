@@ -2,25 +2,29 @@ import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+const createSupabaseServerClient = async () => {
+  const cookieStore = await cookies();
+  return createServerClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
+    {
+      cookies: {
+        getAll() {
+          return cookieStore.getAll();
+        },
+        setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) =>
+            cookieStore.set(name, value, options)
+          );
+        },
+      },
+    }
+  );
+};
+
 export async function GET(req) {
   try {
-    const cookieStore = await cookies();
-    const supabase = createServerClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL,
-      process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
-      {
-        cookies: {
-          getAll() {
-            return cookieStore.getAll();
-          },
-          setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) =>
-              cookieStore.set(name, value, options)
-            );
-          },
-        },
-      }
-    );
+    const supabase = await createSupabaseServerClient();
 
     // Authentication check
     const {
@@ -29,6 +33,7 @@ export async function GET(req) {
     } = await supabase.auth.getUser();
 
     if (authError || !user) {
+      console.error("[AdminContactsAPI] Auth failure:", authError);
       return NextResponse.json(
         { error: "Unauthorized access — Admin only." },
         { status: 401 }
@@ -36,12 +41,24 @@ export async function GET(req) {
     }
 
     // Fetch contacts
-    const { data, error } = await supabase
+    const { searchParams } = new URL(req.url);
+    const unreadOnly = searchParams.get("unread") === "true";
+
+    let query = supabase
       .from("contacts")
       .select("*")
       .order("created_at", { ascending: false });
 
-    if (error) throw error;
+    if (unreadOnly) {
+      query = query.eq("is_read", false);
+    }
+
+    const { data, error } = await query;
+
+    if (error) {
+      console.error("[AdminContactsAPI] Data fetch error:", error);
+      throw error;
+    }
 
     return NextResponse.json(data);
   } catch (error) {

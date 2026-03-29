@@ -182,21 +182,23 @@ export default function Page() {
               decision you make is backed by airtight legal frameworks and
               industry expertise.
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-6 md:gap-8">
+            <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-8">
               <Link
                 href="/contact"
-                className="btn-base bg-primary text-white px-10 md:px-12 py-5 hover:bg-tertiary hover:shadow-2xl transition-all text-xs font-label uppercase tracking-widest font-bold"
+                className="btn-base bg-primary text-white w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-tertiary hover:shadow-2xl transition-all text-xs font-label uppercase tracking-widest font-bold"
               >
                 Request Strategy Session
               </Link>
               <Link
                 href={process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#"}
-                className="btn-base border border-primary/20 text-primary px-10 md:px-12 py-5 hover:bg-primary-container/20 transition-all flex items-center justify-center gap-2 group text-xs font-label uppercase tracking-widest font-bold"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-base border border-primary/20 text-primary w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-primary-container/20 transition-all flex items-center justify-center gap-3 group text-xs font-label uppercase tracking-widest font-bold"
               >
                 <img
                   src="/assets/whatsapp-icon.svg"
                   alt="WhatsApp icon"
-                  className="w-4 h-4 group-hover:drop-shadow-[0_0_8px_rgba(34,197,94,0.8)] group-hover:brightness-110 transition-all duration-300"
+                  className="w-4 h-4 transition-all duration-300 shrink-0"
                 />
                 Direct Consult
               </Link>

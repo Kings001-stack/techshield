@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 
 export default function ProfilePage() {
   const [user, setUser] = useState(null);
+  const [fetchError, setFetchError] = useState(false);
   const [newEmail, setNewEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -15,7 +16,12 @@ export default function ProfilePage() {
     const fetchUser = async () => {
       const {
         data: { user },
+        error,
       } = await supabase.auth.getUser();
+      if (!user || error) {
+        setFetchError(true);
+        return;
+      }
       setUser(user);
       setNewEmail(user?.email || "");
     };
@@ -106,9 +112,25 @@ export default function ProfilePage() {
     setLoading(false);
   };
 
+  if (fetchError)
+    return (
+      <div className="p-12 text-center">
+        <span className="material-symbols-outlined text-5xl text-red-400 mb-4 block">lock_person</span>
+        <p className="text-primary font-headline text-2xl italic mb-2">Session Expired</p>
+        <p className="text-on-surface-variant text-sm mb-6">Your admin session could not be verified. Please sign in again.</p>
+        <a
+          href="/admin/login"
+          className="inline-block btn-base bg-primary text-on-primary px-8 py-3 text-xs font-label font-bold uppercase tracking-widest hover:bg-tertiary transition-all"
+        >
+          Return to Login
+        </a>
+      </div>
+    );
+
   if (!user)
     return (
-      <div className="p-12 text-on-surface-variant font-light italic">
+      <div className="p-12 flex items-center gap-3 text-on-surface-variant font-light italic">
+        <span className="material-symbols-outlined animate-spin text-tertiary">progress_activity</span>
         Loading Profile Context...
       </div>
     );

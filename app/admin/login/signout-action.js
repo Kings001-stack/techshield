@@ -4,10 +4,7 @@ import { createServerClient } from '@supabase/ssr'
 import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 
-export async function login(formData) {
-  const email = formData.get('email')
-  const password = formData.get('password')
-  
+export async function signOut() {
   const cookieStore = await cookies()
 
   const supabase = createServerClient(
@@ -27,15 +24,8 @@ export async function login(formData) {
     }
   )
 
-  const { error } = await supabase.auth.signInWithPassword({
-    email,
-    password,
-  })
-
-  if (error) {
-    return { error: error.message }
-  }
-
-  // If successful, redirect to contacts
-  redirect('/admin/contacts')
+  await supabase.auth.signOut()
+  
+  // Force total clearing of cookies and redirection
+  redirect('/admin/login')
 }
