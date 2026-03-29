@@ -112,7 +112,7 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          className="lg:hidden h-10 w-10 border border-outline-variant/20 flex items-center justify-center text-primary"
+          className="lg:hidden h-8 w-8 flex items-center justify-center text-primary"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <span className="material-symbols-outlined transition-transform duration-300">
@@ -123,31 +123,37 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden absolute top-full left-0 right-0 bg-surface border-t border-outline-variant/10 p-10 shadow-2xl animate-in slide-in-from-top duration-500 ease-out">
-          <div className="flex flex-col gap-8">
-            {navLinks.map((link) => (
+        <>
+          <div 
+            className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 lg:hidden" 
+            onClick={() => setMobileMenuOpen(false)} 
+          />
+          <div className="lg:hidden absolute top-full left-0 right-0 bg-surface border-t border-outline-variant/10 p-6 shadow-2xl animate-in slide-in-from-top duration-300 ease-out z-50">
+            <div className="flex flex-col gap-4">
+              {navLinks.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={`font-label text-sm uppercase tracking-widest border-b border-outline-variant/5 pb-4 ${
+                    pathname === link.href
+                      ? "text-tertiary font-bold"
+                      : "text-primary"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
               <Link
-                key={link.href}
-                href={link.href}
+                href="/contact?service=Consultation"
                 onClick={() => setMobileMenuOpen(false)}
-                className={`font-label text-sm uppercase tracking-widest border-b border-outline-variant/5 pb-6 ${
-                  pathname === link.href
-                    ? "text-tertiary font-bold"
-                    : "text-primary"
-                }`}
+                className="btn-base bg-primary text-on-primary text-center px-6 py-4 mt-2 text-xs font-label font-bold tracking-[0.2em] uppercase rounded-none"
               >
-                {link.label}
+                Book a Consultation
               </Link>
-            ))}
-            <Link
-              href="/contact?service=Consultation"
-              onClick={() => setMobileMenuOpen(false)}
-              className="btn-base bg-primary text-on-primary text-center px-6 py-5 text-xs font-label font-bold tracking-[0.2em] uppercase rounded-none"
-            >
-              Book a Consultation
-            </Link>
+            </div>
           </div>
-        </div>
+        </>
       )}
     </nav>
   );

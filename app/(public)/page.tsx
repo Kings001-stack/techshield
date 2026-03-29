@@ -61,9 +61,9 @@ export default function Page() {
             </FadeIn>
           </div>
 
-          <div className="lg:col-span-5 relative z-10">
+          <div className="lg:col-span-5 relative z-10 w-full mt-10 md:mt-0">
             <FadeIn direction="right" delay={200}>
-              <div className="relative aspect-[4/5] md:aspect-auto md:h-[600px] xl:h-[760px] w-full overflow-hidden">
+              <div className="relative h-[450px] sm:h-[550px] md:h-[600px] xl:h-[760px] w-full overflow-hidden shrink-0">
                 {/* Image Background Container */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary via-surface-container-high to-surface opacity-10" />
                 <div className="absolute top-6 md:top-10 left-6 md:left-10 right-6 md:right-10 bottom-6 md:bottom-10 border border-primary/5 -z-1" />
@@ -201,8 +201,8 @@ export default function Page() {
         <FadeIn>
           <div className="flex flex-col lg:flex-row items-center justify-between gap-16 p-20 bg-surface-container-low rounded-3xl border border-outline-variant/5">
             <div className="text-left lg:max-w-xl">
-              <h2 className="font-headline text-5xl text-primary mb-6 leading-[1.2]">
-                Expert Legal <br /> Shield for your Growth.
+              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl text-primary mb-6 leading-[1.1] md:leading-[1.2]">
+                Expert Legal <br className="hidden md:block" /> Shield for your Growth.
               </h2>
               <p className="text-lg text-on-surface-variant font-light leading-relaxed">
                 Connect with us today for discrete, professional advisory that

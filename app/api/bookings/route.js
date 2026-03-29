@@ -20,15 +20,16 @@ export async function POST(req) {
       );
     }
 
-    const { error } = await supabase.rpc("insert_booking", {
-      p_name: name,
-      p_email: email,
-      p_phone: phone,
-      p_country: country,
-      p_service_type: service_type,
-      p_preferred_date: preferred_date,
-      p_preferred_time: preferred_time,
-    });
+    const { error } = await supabase.from("bookings").insert([{
+      name,
+      email,
+      phone,
+      country,
+      service_type,
+      preferred_date,
+      preferred_time,
+      status: 'pending'
+    }]);
 
     if (error) throw error;
 

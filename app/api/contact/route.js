@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    const { name, email, phone, country, message } = await req.json();
+    const { name, email, phone, country, service_type, message } = await req.json();
 
     // Input validation
     if (!name || !email || !message) {
@@ -13,13 +13,14 @@ export async function POST(req) {
       );
     }
 
-    const { error } = await supabase.rpc("insert_contact", {
-      p_name: name,
-      p_email: email,
-      p_phone: phone,
-      p_country: country,
-      p_message: message,
-    });
+    const { error } = await supabase.from("contacts").insert([{
+      name,
+      email,
+      phone,
+      country,
+      message,
+      service_type: service_type || null
+    }]);
 
     if (error) throw error;
 

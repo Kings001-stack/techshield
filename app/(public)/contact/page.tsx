@@ -6,6 +6,7 @@ import CountryCodePicker from "@/app/components/CountryCodePicker";
 import Link from "next/link";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
+import toast from "react-hot-toast";
 
 function ContactForm() {
   const searchParams = useSearchParams();
@@ -31,7 +32,6 @@ function ContactForm() {
     }
   }, [searchParams]);
 
-  const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
@@ -80,12 +80,12 @@ function ContactForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!validate()) {
-      setStatus({ type: "error", message: "Please correct the errors before submitting." });
+      toast.error("Please correct the errors before submitting.");
+      window.scrollTo({ top: 0, behavior: "smooth" });
       return;
     }
 
     setLoading(true);
-    setStatus({ type: "", message: "" });
 
     try {
       // Determine if this is a booking or a general inquiry
@@ -120,12 +120,11 @@ function ContactForm() {
       const result = await res.json();
 
       if (res.ok) {
-        setStatus({
-          type: "success",
-          message: isBooking
+        toast.success(
+          isBooking
             ? "Your consultation request has been received. We will confirm shortly."
-            : "Your inquiry has been submitted. Our team will reach out within 24 hours.",
-        });
+            : "Your inquiry has been submitted. Our team will reach out within 24 hours."
+        );
         setFormData({
           name: "",
           email: "",
@@ -137,15 +136,16 @@ function ContactForm() {
           date: "",
           time: "",
         });
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         throw new Error(result.error || "Something went wrong.");
       }
     } catch (err) {
       console.error("Submission error:", err);
-      setStatus({ 
-        type: "error", 
-        message: err instanceof Error ? err.message : "An unexpected error occurred. Please try again later." 
-      });
+      toast.error(
+        err instanceof Error ? err.message : "An unexpected error occurred. Please try again later."
+      );
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
       setLoading(false);
     }
@@ -154,7 +154,7 @@ function ContactForm() {
   return (
     <div className="page-enter">
       {/* ── Hero ─────────────────────────────── */}
-      <section className="py-16 md:py-24 max-w-screen-2xl mx-auto px-6 md:px-8 mb-4">
+      <section className="pt-28 pb-16 md:pt-40 md:pb-24 max-w-screen-2xl mx-auto px-6 md:px-8 mb-4">
         <FadeIn>
           <span className="inline-flex items-center gap-3 text-tertiary font-label font-semibold tracking-[0.25em] mb-6 md:mb-8 uppercase text-[10px] md:text-xs">
             <span className="gold-rule" />
@@ -197,19 +197,6 @@ function ContactForm() {
               </p>
 
               <form onSubmit={handleSubmit} className="space-y-6">
-                {/* Status Messages */}
-                {status.message && (
-                  <div
-                    className={`p-4 rounded-md text-sm font-medium ${
-                      status.type === "success"
-                        ? "bg-green-50 text-green-800 border border-green-200"
-                        : "bg-red-50 text-red-800 border border-red-200"
-                    }`}
-                  >
-                    {status.message}
-                  </div>
-                )}
-
                 {/* Row: Name + Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-1.5">
