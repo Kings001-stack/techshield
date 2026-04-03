@@ -104,6 +104,7 @@ export default function AdminLayout({ children }) {
 
   const navLinks = [
     { label: "Contact Inquiries", href: "/admin/contacts", icon: "mail", count: counts.contacts },
+    { label: "Client Reviews", href: "/admin/reviews", icon: "rate_review" },
     { label: "Settings & Security", href: "/admin/profile", icon: "security" },
   ];
 

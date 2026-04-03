@@ -4,44 +4,16 @@ import Link from "next/link";
 const practiceAreas = [
   {
     id: "corporate",
-    title: "Corporate & Business Advisory",
+    title: "Corporate Business Law",
     image: "/assets/practice-areas/corporate.png",
     description:
-      "Holistic legal support for corporations, from entity selection to post-incorporation governance and daily operations.",
+      "Strategic legal engineering for corporations, from entity selection to cross-border governance and daily industrial operations.",
     icon: "corporate_fare",
     details: [
-      "Company formation and structuring",
-      "Corporate governance & compliance audits",
+      "Company formation and industrial structuring",
+      "Corporate governance & global compliance audits",
       "Shareholder agreements & board resolutions",
-      "Drafting and review of commercial contracts",
-    ],
-  },
-  {
-    id: "transactions",
-    title: "Commercial Transactions",
-    image: "/assets/practice-areas/transactions.png",
-    description:
-      "Meticulous legal engineering for complex deals, ensuring your business interests are shielded at every negotiation phase.",
-    icon: "handshake",
-    details: [
-      "Service and supply chain agreements",
-      "M&A, joint ventures & partnerships",
-      "NDA drafting and transaction advisory",
-      "Regulatory risk mitigation in deal structures",
-    ],
-  },
-  {
-    id: "regulatory",
-    title: "Regulatory Compliance & Immigration",
-    image: "/assets/practice-areas/regulatory.png",
-    description:
-      "Seamlessly navigate the Nigerian regulatory landscape, ensuring all statutory certifications and work permits are in place.",
-    icon: "verified_user",
-    details: [
-      "NSITF, ITF, and PENCOM certifications",
-      "Expatriate quotas & Nigerian work permits",
-      "Tender pre-qualification documentation",
-      "Statutory annual returns and filings",
+      "Drafting and review of high-stakes commercial contracts",
     ],
   },
   {
@@ -49,41 +21,70 @@ const practiceAreas = [
     title: "Real Estate & Property Law",
     image: "/assets/practice-areas/real-estate.png",
     description:
-      "Securing your physical assets with thorough due diligence and precise documentation for land acquisitions and leases.",
+      "Securing physical assets with meticulous due diligence and precise documentation for land acquisitions and leases.",
     icon: "real_estate_agent",
     details: [
-      "Property acquisition and title verification",
-      "Leasehold agreements and management",
+      "Property acquisition and rigorous title verification",
+      "Leasehold agreements and commercial management",
       "Sale deeds and ownership transfers",
-      "Project financing for property development",
+      "Project financing for large-scale property development",
     ],
   },
   {
     id: "intellectual-property",
-    title: "Intellectual Property",
+    title: "Intellectual Property Law",
     image: "/assets/practice-areas/intellectual-property.png",
     description:
-      "Strategic advisory to protect your brand's unique identity, creative works, and industrial innovations in a competitive market.",
+      "Strategic advisory to protect your brand's unique identity, creative works, and industrial innovations in a competitive global market.",
     icon: "copyright",
     details: [
-      "Trademark registration and renewals",
-      "Copyright notifications & brand protection",
+      "Trademark registration and international renewals",
+      "Copyright notifications & brand protection strategies",
       "Patent and industrial design filings",
       "IP licensing and infringement mediation",
     ],
   },
   {
-    id: "governance",
-    title: "Governance & Risk Training",
+    id: "immigration",
+    title: "Immigration Law",
     image: "/assets/practice-areas/governance.png",
     description:
-      "Tailored workshops and strategic manuals to empower boards and teams with robust governance and mediation frameworks.",
-    icon: "model_training",
+      "Navigating the complexities of global mobility and residency, ensuring seamless transitions for talent and corporations.",
+    icon: "public",
     details: [
-      "Customized governance manuals",
-      "Workshops on contract negotiation",
-      "Strategic risk assessment training",
-      "Mediation & conflict resolution sessions",
+      "Business and work permit applications",
+      "Residency and citizenship advisory",
+      "Expatriate quota management",
+      "Compliance with international immigration protocols",
+    ],
+  },
+  {
+    id: "adr",
+    title: "Alternative Dispute Resolution (ADR)",
+    image: "/assets/practice-areas/transactions.png",
+    description:
+      "Efficient, private, and strategic resolution of disputes through mediation and arbitration, bypassing traditional litigation bottlenecks.",
+    icon: "handshake",
+    details: [
+      "Commercial mediation and negotiation",
+      "International arbitration advisory",
+      "Conflict resolution framework design",
+      "Private settlement agreements",
+    ],
+  },
+  {
+    id: "labor-law",
+    title: "Employment & Labor Law",
+    image:
+      "/assets/practice-areas/employ.jpg",
+    description:
+      "Balancing organizational interests with workforce rights through precise contract drafting and labor regulatory compliance.",
+    icon: "groups",
+    details: [
+      "Employment contract drafting and review",
+      "Labor law compliance audits",
+      "Workplace policy development",
+      "Dismissal and redundancy advisory",
     ],
   },
 ];
@@ -92,17 +93,24 @@ export default function Page() {
   return (
     <div className="page-enter bg-surface overflow-x-hidden">
       {/* ── Hero ─────────────────────────── */}
-      <section className="py-20 md:py-32 max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-surface-container-low/30 skew-x-12 translate-x-1/4 pointer-events-none" />
+      <section className="py-24 md:py-48 max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative overflow-hidden bg-primary">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img
+            src="/assets/practice-areas/bg-hero.jpg"
+            alt="TechShield Practice Areas"
+            className="absolute inset-0 w-full h-full object-cover opacity-20 transition-transform duration-[3000ms] hover:scale-105"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
+        </div>
         <FadeIn>
           <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 md:mb-12 uppercase text-[10px] md:text-xs">
             <span className="w-8 md:w-12 h-px bg-tertiary" />
             Core Competencies
           </span>
-          <h1 className="font-headline text-6xl md:text-9xl text-primary tracking-tighter mb-6 md:mb-10 italic">
+          <h1 className="font-headline text-6xl md:text-9xl text-white tracking-tighter mb-6 md:mb-10 italic">
             Practice <br /> Areas.
           </h1>
-          <p className="text-on-surface-variant text-xl md:text-2xl font-light max-w-3xl leading-relaxed">
+          <p className="text-white/70 text-xl md:text-2xl font-light max-w-3xl leading-relaxed">
             TechShield Legal provides precise, high-stakes legal advisory across
             corporate, commercial, and property sectors.
           </p>
@@ -125,12 +133,12 @@ export default function Page() {
                   className="group relative h-[320px] md:h-[400px] overflow-hidden rounded-xl md:rounded-2xl border border-outline-variant/10 shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 cursor-pointer"
                 >
                   {/* Full Background Image */}
-                  <img 
-                    src={area.image} 
+                  <img
+                    src={area.image}
                     alt={area.title}
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
                   />
-                  
+
                   {/* Premium Overlays */}
                   <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
                   <div className="absolute inset-0 border-[0.5px] border-white/5 m-3 rounded-lg md:rounded-xl pointer-events-none" />
@@ -138,15 +146,15 @@ export default function Page() {
                   {/* Content (Simplified) */}
                   <div className="absolute inset-0 p-8 flex flex-col justify-end">
                     <div className="flex items-center gap-4 mb-2">
-                       <span className="w-8 h-px bg-tertiary/60" />
-                       <span className="font-label text-[10px] uppercase tracking-[0.3em] text-tertiary">
-                         Specialization 0{i+1}
-                       </span>
+                      <span className="w-8 h-px bg-tertiary/60" />
+                      <span className="font-label text-[10px] uppercase tracking-[0.3em] text-tertiary">
+                        Specialization 0{i + 1}
+                      </span>
                     </div>
                     <h2 className="font-headline text-3xl md:text-4xl text-white italic leading-tight mb-2">
                       {area.title}
                     </h2>
-                    
+
                     {/* Bottom CTA (Subtle) */}
                     <Link
                       href={`/contact?service=${encodeURIComponent(area.title)}`}
@@ -158,7 +166,7 @@ export default function Page() {
                       </span>
                     </Link>
                   </div>
-                  
+
                   {/* Hover Shine Effect */}
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
                     <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 via-transparent to-transparent" />
@@ -175,7 +183,8 @@ export default function Page() {
         <div className="max-w-4xl mx-auto px-8 relative z-10">
           <FadeIn>
             <h2 className="font-headline text-5xl md:text-6xl text-primary mb-8 md:mb-12 leading-tight">
-              Shielding Your <br className="md:hidden" /> <span className="text-tertiary">Innovations.</span>
+              Shielding Your <br className="md:hidden" />{" "}
+              <span className="text-tertiary">Innovations.</span>
             </h2>
             <p className="text-on-surface-variant text-lg md:text-xl mb-12 md:mb-16 font-light max-w-2xl mx-auto leading-relaxed">
               Our multidisciplinary approach ensures that every business
@@ -187,7 +196,7 @@ export default function Page() {
                 href="/contact"
                 className="btn-base bg-primary text-white w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-tertiary hover:shadow-2xl transition-all text-xs font-label uppercase tracking-widest font-bold"
               >
-                Request Strategy Session
+                Book consultation
               </Link>
               <Link
                 href={process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#"}

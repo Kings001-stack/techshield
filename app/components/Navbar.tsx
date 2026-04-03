@@ -30,25 +30,34 @@ export default function Navbar() {
     return (
       <nav className="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent py-7">
         <div className="max-w-screen-2xl mx-auto px-8 flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <img
-              src="/assets/logo.png"
-              alt="TechShield Legal Logo"
-              className="h-10 w-auto object-contain scale-125"
-            />
-          </Link>
+          <div className="h-12" />
         </div>
       </nav>
     );
   }
 
+  const isDarkHeroPage = pathname?.startsWith("/practice-areas");
+  const navTextColor = scrolled
+    ? "text-primary/70"
+    : isDarkHeroPage
+      ? "text-white"
+      : "text-primary/70";
+  const navActiveColor = "text-tertiary";
+  const logoFilter = !scrolled && isDarkHeroPage ? "brightness-125" : "";
+  const btnTheme =
+    !scrolled && isDarkHeroPage
+      ? "bg-white text-primary hover:bg-tertiary hover:text-white"
+      : "bg-primary text-on-primary hover:bg-tertiary";
+
+  const navBg = scrolled
+    ? "bg-surface/90 backdrop-blur-xl border-b border-outline-variant/10 py-4 shadow-sm"
+    : isDarkHeroPage
+      ? "bg-primary/95 backdrop-blur-md py-7 border-b border-white/5"
+      : "bg-transparent py-7";
+
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled
-          ? "bg-surface/90 backdrop-blur-xl border-b border-outline-variant/10 py-4 shadow-sm"
-          : "bg-transparent py-7"
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${navBg}`}
     >
       <div className="max-w-screen-2xl mx-auto px-8 flex items-center justify-between">
         {/* Brand Logo with Scale of Justice */}
@@ -57,7 +66,7 @@ export default function Navbar() {
             <img
               src="/assets/logo.png"
               alt="TechShield Legal"
-              className="h-12 w-auto object-contain filter drop-shadow-sm"
+              className={`h-12 w-auto object-contain filter drop-shadow-sm ${logoFilter}`}
             />
           </div>
         </Link>
@@ -72,7 +81,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   className={`relative font-label text-xs uppercase tracking-[0.25em] transition-all hover:text-tertiary py-2 ${
-                    isActive ? "text-tertiary font-bold" : "text-primary/70"
+                    isActive ? `${navActiveColor} font-bold` : navTextColor
                   }`}
                 >
                   {link.label}
@@ -89,12 +98,12 @@ export default function Navbar() {
               href={process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#"}
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 text-[10px] font-label font-bold uppercase tracking-[0.2em] text-primary/60 hover:text-tertiary transition-colors"
+              className={`group flex items-center gap-2 text-[10px] font-label font-bold uppercase tracking-[0.2em] hover:text-tertiary transition-colors ${navTextColor}`}
             >
               <img
                 src="/assets/whatapp-icon.png"
                 alt="WhatsApp icon"
-                className="w-4 h-4 transition-all duration-300"
+                className={`w-4 h-4 transition-all duration-300 ${!scrolled && isDarkHeroPage ? "invert brightness-200" : ""}`}
               />
               WhatsApp
               <span className="material-symbols-outlined text-sm">
@@ -103,7 +112,7 @@ export default function Navbar() {
             </Link>
             <Link
               href="/contact?service=Consultation"
-              className="btn-base bg-primary text-on-primary px-6 py-3 text-[10px] font-label font-bold tracking-[0.2em] uppercase hover:bg-tertiary hover:shadow-lg hover:shadow-tertiary/20"
+              className={`btn-base px-6 py-3 text-[10px] font-label font-bold tracking-[0.2em] uppercase shadow-sm transition-all duration-300 hover:shadow-lg ${btnTheme}`}
             >
               Consult Now
             </Link>
@@ -112,7 +121,7 @@ export default function Navbar() {
 
         {/* Mobile menu toggle */}
         <button
-          className="lg:hidden h-8 w-8 flex items-center justify-center text-primary"
+          className={`lg:hidden h-8 w-8 flex items-center justify-center transition-colors ${navTextColor}`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <span className="material-symbols-outlined transition-transform duration-300">
@@ -124,9 +133,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {mobileMenuOpen && (
         <>
-          <div 
-            className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 lg:hidden" 
-            onClick={() => setMobileMenuOpen(false)} 
+          <div
+            className="fixed inset-0 bg-black/10 backdrop-blur-sm z-40 lg:hidden"
+            onClick={() => setMobileMenuOpen(false)}
           />
           <div className="lg:hidden absolute top-full left-0 right-0 bg-surface border-t border-outline-variant/10 p-6 shadow-2xl animate-in slide-in-from-top duration-300 ease-out z-50">
             <div className="flex flex-col gap-4">

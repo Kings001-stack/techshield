@@ -1,13 +1,18 @@
 import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
+import ReviewCarousel from "@/app/components/ReviewCarousel";
 
 export default function Page() {
   return (
     <div className="page-enter">
       {/* ── Hero ─────────────────────────────── */}
       <section className="relative min-h-[100vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-background">
-        {/* subtle background texture */}
-        <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img 
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
+            alt="" 
+            className="absolute inset-0 w-full h-full object-cover opacity-[0.03] scale-105"
+          />
           <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-surface-container-low opacity-20 md:opacity-40 mix-blend-multiply" />
           <div className="absolute bottom-0 left-0 w-[1px] h-1/2 md:h-3/4 bg-tertiary/30" />
         </div>
@@ -64,17 +69,13 @@ export default function Page() {
           <div className="lg:col-span-5 relative z-10 w-full mt-10 md:mt-0">
             <FadeIn direction="right" delay={200}>
               <div className="relative h-[450px] sm:h-[550px] md:h-[600px] xl:h-[760px] w-full overflow-hidden shrink-0">
-                {/* Image Background Container */}
                 <div className="absolute inset-0 bg-gradient-to-br from-primary via-surface-container-high to-surface opacity-10" />
                 <div className="absolute top-6 md:top-10 left-6 md:left-10 right-6 md:right-10 bottom-6 md:bottom-10 border border-primary/5 -z-1" />
-
                 <img
-                  alt="Geraldine Mbah — Principal Counsel at TechShield Legal Services"
+                  alt="Geraldine Mbah"
                   className="w-full h-full object-contain relative drop-shadow-[0_45px_100px_rgba(0,10,25,0.15)] filter brightness-105"
                   src="/assets/pic.png"
                 />
-
-                {/* Floating badge */}
                 <div className="absolute bottom-6 md:bottom-10 left-0 bg-primary-container p-6 md:p-8 shadow-2xl skew-x-[-12deg] -translate-x-4">
                   <div className="skew-x-[12deg]">
                     <span className="block text-on-primary-container font-headline text-2xl md:text-3xl italic">
@@ -139,10 +140,13 @@ export default function Page() {
 
       {/* ── Why Choose Us ──────────────────── */}
       <section className="py-40 bg-primary relative overflow-hidden">
-        {/* Subtle geometric overlay */}
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 border border-white rounded-full scale-[2]" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 border border-white rounded-full scale-[1.5]" />
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <img 
+            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
+            className="w-full h-full object-cover grayscale"
+            alt=""
+          />
+          <div className="absolute inset-0 bg-primary/80" />
         </div>
 
         <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
@@ -196,42 +200,97 @@ export default function Page() {
         </div>
       </section>
 
+
+
+      {/* ── Client Testimonials ─────────────── */}
+      <section className="relative py-40 overflow-hidden bg-primary">
+         <div className="absolute inset-0 pointer-events-none overflow-hidden">
+            <img 
+              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
+              className="absolute inset-0 w-full h-full object-cover opacity-10 scale-110 grayscale" 
+              alt=""
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-primary via-transparent to-primary" />
+         </div>
+         <div className="relative z-10 max-w-screen-xl mx-auto px-8 text-center">
+            <FadeIn>
+              <div className="text-center mb-16 px-4">
+                <span className="font-label text-xs tracking-[0.5em] text-tertiary mb-6 block uppercase font-bold">Endorsements</span>
+                <h2 className="font-headline text-5xl md:text-6xl text-white italic mb-16">Partnering in Success</h2>
+                
+                {/* Integrated Stats */}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-5xl mx-auto mb-20 border-y border-white/10 py-16">
+                  {[
+                    { label: "Precision Case Closures", value: "500+", sub: "Successful legal outcomes" },
+                    { label: "Corporate Entities Managed", value: "150+", sub: "Ongoing strategic advisory" },
+                    { label: "Consultations Completed", value: "200+", sub: "Business strategy sessions" },
+                  ].map((stat, i) => (
+                    <div key={stat.label} className="text-center group">
+                      <span className="block font-headline text-5xl md:text-6xl text-tertiary italic mb-4">
+                        {stat.value}
+                      </span>
+                      <span className="block font-label text-[10px] uppercase tracking-[0.4em] text-white font-bold mb-2">
+                        {stat.label}
+                      </span>
+                      <span className="block text-white/50 text-[10px] italic font-light">
+                        {stat.sub}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </FadeIn>
+            <ReviewCarousel />
+         </div>
+      </section>
+
       {/* ── CTA Final ────────────────── */}
-      <section className="py-24 bg-surface max-w-screen-2xl mx-auto px-8 my-20">
-        <FadeIn>
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-16 p-20 bg-surface-container-low rounded-3xl border border-outline-variant/5">
-            <div className="text-left lg:max-w-xl">
-              <h2 className="font-headline text-4xl md:text-5xl lg:text-6xl text-primary mb-6 leading-[1.1] md:leading-[1.2]">
-                Expert Legal <br className="hidden md:block" /> Shield for your Growth.
-              </h2>
-              <p className="text-lg text-on-surface-variant font-light leading-relaxed">
-                Connect with us today for discrete, professional advisory that
-                solves today's issues and shields tomorrow's success.
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4 md:gap-8 shrink-0 w-full lg:w-auto mt-10 lg:mt-0">
-              <Link
-                href="/contact"
-                className="btn-base bg-primary text-white w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-tertiary shadow-xl text-center font-bold"
-              >
-                Book Strategy Session
-              </Link>
-              <Link
-                href={process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-base border border-primary/20 text-primary w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-primary-container/10 transition-all flex items-center justify-center gap-3 font-bold"
-              >
-                <img
-                  src="/assets/whatapp-icon.png"
-                  alt="WhatsApp icon"
-                  className="w-5 h-5 shrink-0 object-contain"
+      <section className="py-32 md:py-48 bg-surface relative overflow-hidden">
+        <div className="max-w-screen-2xl mx-auto px-8">
+          <FadeIn>
+            <div className="relative group flex flex-col lg:flex-row items-center justify-between gap-16 p-12 md:p-24 bg-primary rounded-[2.5rem] overflow-hidden border border-white/5 shadow-3xl">
+              <div className="absolute inset-0 -z-1 opacity-20 filter grayscale group-hover:scale-105 transition-transform duration-[2000ms]">
+                <img 
+                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop" 
+                  alt="" 
+                  className="w-full h-full object-cover"
                 />
-                <span className="shrink-0 tracking-widest uppercase">WhatsApp Chat</span>
-              </Link>
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/95 to-transparent -z-1" />
+              <div className="text-left lg:max-w-2xl relative z-10">
+                <span className="w-12 h-px bg-tertiary mb-10 block" />
+                <h2 className="font-headline text-5xl md:text-7xl text-white mb-8 leading-[1.1] italic">
+                  Expert Legal <br /> Shield for your Growth.
+                </h2>
+                <p className="text-lg md:text-xl text-white/70 font-light leading-relaxed max-w-lg">
+                  Connect with us today for discrete, professional advisory that
+                  solves today's issues and shields tomorrow's success.
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-8 shrink-0 w-full lg:w-auto mt-10 lg:mt-0 relative z-10">
+                <Link
+                  href="/contact"
+                  className="btn-base bg-white text-primary w-full sm:w-auto px-10 md:px-14 py-5 md:py-6 hover:bg-tertiary hover:text-white shadow-2xl text-center font-bold font-label text-xs uppercase tracking-widest"
+                >
+                  Book Consultation
+                </Link>
+                <Link
+                  href={process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#"}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-base bg-white/5 backdrop-blur-md border border-white/20 text-white w-full sm:w-auto px-10 md:px-14 py-5 md:py-6 hover:bg-white/10 transition-all flex items-center justify-center gap-3 font-bold font-label text-xs uppercase tracking-widest"
+                >
+                  <img
+                    src="/assets/whatapp-icon.png"
+                    alt="WhatsApp icon"
+                    className="w-5 h-5 shrink-0 object-contain brightness-0 invert"
+                  />
+                  <span>WhatsApp Chat</span>
+                </Link>
+              </div>
             </div>
-          </div>
-        </FadeIn>
+          </FadeIn>
+        </div>
       </section>
     </div>
   );

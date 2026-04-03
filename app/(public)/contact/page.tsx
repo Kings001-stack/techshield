@@ -421,7 +421,8 @@ function ContactForm() {
                       label: "Primary Desk",
                       value: "enquiries@techshieldlegal.com",
                       bg: "bg-surface-container-highest",
-                      isLink: false,
+                      href: "mailto:enquiries@techshieldlegal.com",
+                      isLink: true,
                     },
                   ].map((item) => {
                     const Content = (
@@ -456,8 +457,8 @@ function ContactForm() {
                       <Link
                         key={item.label}
                         href={item.href!}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        target={item.label === "WhatsApp" ? "_blank" : undefined}
+                        rel={item.label === "WhatsApp" ? "noopener noreferrer" : undefined}
                         className="flex items-center gap-4 rounded-lg bg-white/10 backdrop-blur-sm p-4 hover:bg-white/20 transition-all border border-white/5 group"
                       >
                         {Content}
@@ -508,9 +509,6 @@ function ContactForm() {
                         DBM Plaza, Suite 212B, <br />
                         Aminu Kano Crescent, <br />
                         Wuse II, Abuja.
-                      </p>
-                      <p className="italic text-[10px] md:text-xs pt-2 text-tertiary font-medium tracking-wide">
-                        Strategizing Business Success — By Appointment Only
                       </p>
                     </div>
                   </div>
