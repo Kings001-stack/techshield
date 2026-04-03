@@ -1,16 +1,17 @@
 import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
 import ReviewCarousel from "@/app/components/ReviewCarousel";
+import SpecializationsGrid from "@/app/components/SpecializationsGrid";
 
 export default function Page() {
   return (
-    <div className="page-enter">
+    <div className="page-enter pt-24 md:pt-28">
       {/* ── Hero ─────────────────────────────── */}
-      <section className="relative min-h-[100vh] lg:min-h-[92vh] flex items-center overflow-hidden bg-background">
+      <section className="relative min-h-[85vh] lg:min-h-[80vh] flex items-center overflow-hidden bg-background">
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <img 
-            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop" 
-            alt="" 
+          <img
+            src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2069&auto=format&fit=crop"
+            alt=""
             className="absolute inset-0 w-full h-full object-cover opacity-[0.03] scale-105"
           />
           <div className="absolute top-0 right-0 w-full md:w-1/2 h-full bg-surface-container-low opacity-20 md:opacity-40 mix-blend-multiply" />
@@ -138,110 +139,90 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── Why Choose Us ──────────────────── */}
-      <section className="py-40 bg-primary relative overflow-hidden">
+      {/* ── Key Specializations ──────────────────── */}
+      <section className="py-32 md:py-40 bg-primary relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
-          <img 
-            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop" 
+          <img
+            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop"
             className="w-full h-full object-cover grayscale"
             alt=""
           />
           <div className="absolute inset-0 bg-primary/80" />
         </div>
 
-        <div className="max-w-screen-2xl mx-auto px-8 relative z-10">
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
           <FadeIn>
-            <div className="mb-24 text-center">
-              <span className="w-12 h-px bg-tertiary mx-auto mb-8 block" />
-              <h2 className="font-headline text-6xl text-white italic">
-                Why TechShield?
+            <div className="mb-16 md:mb-20 text-center">
+              <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 uppercase text-[10px] md:text-xs">
+                <span className="w-8 md:w-12 h-px bg-tertiary" />
+                Our Expertise
+              </span>
+              <h2 className="font-headline text-4xl md:text-6xl text-white italic underline underline-offset-[12px] md:underline-offset-[16px] decoration-tertiary/10 leading-tight">
+                Key Specializations
               </h2>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            {[
-              {
-                title: "Veteran Leadership",
-                body: "Directed by Geraldine Mbah, LL.M (USA), bringing over 15 years of seasoned counsel to your boardroom.",
-                icon: "shield_with_heart",
-              },
-              {
-                title: "Multi-Sector Mastery",
-                body: "Deep expertise in corporate, commercial, real estate, and IP law across local and international markets.",
-                icon: "account_balance",
-              },
-              {
-                title: "Strategic Advisory",
-                body: "Practical, data-driven legal strategies designed for business owners, property investors, and growing startups.",
-                icon: "monitoring",
-              },
-              {
-                title: "Capacity Building",
-                body: "Unique training programs to equip your internal teams with essential regulatory and compliance knowledge.",
-                icon: "model_training",
-              },
-            ].map((feature, i) => (
-              <FadeIn key={feature.title} delay={i * 100}>
-                <div className="p-12 h-full flex flex-col items-center text-center bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all group">
-                  <span className="material-symbols-outlined text-4xl text-tertiary mb-10 group-hover:scale-110 transition-transform">
-                    {feature.icon}
-                  </span>
-                  <h3 className="text-2xl font-headline mb-6 text-white italic">
-                    {feature.title}
-                  </h3>
-                  <p className="text-white/70 text-base leading-relaxed font-light">
-                    {feature.body}
-                  </p>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+          <SpecializationsGrid />
         </div>
       </section>
 
-
-
       {/* ── Client Testimonials ─────────────── */}
       <section className="relative py-40 overflow-hidden bg-primary">
-         <div className="absolute inset-0 pointer-events-none overflow-hidden">
-            <img 
-              src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop" 
-              className="absolute inset-0 w-full h-full object-cover opacity-10 scale-110 grayscale" 
-              alt=""
-            />
-            <div className="absolute inset-0 bg-gradient-to-b from-primary via-transparent to-primary" />
-         </div>
-         <div className="relative z-10 max-w-screen-xl mx-auto px-8 text-center">
-            <FadeIn>
-              <div className="text-center mb-16 px-4">
-                <span className="font-label text-xs tracking-[0.5em] text-tertiary mb-6 block uppercase font-bold">Endorsements</span>
-                <h2 className="font-headline text-5xl md:text-6xl text-white italic mb-16">Partnering in Success</h2>
-                
-                {/* Integrated Stats */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-5xl mx-auto mb-20 border-y border-white/10 py-16">
-                  {[
-                    { label: "Precision Case Closures", value: "500+", sub: "Successful legal outcomes" },
-                    { label: "Corporate Entities Managed", value: "150+", sub: "Ongoing strategic advisory" },
-                    { label: "Consultations Completed", value: "200+", sub: "Business strategy sessions" },
-                  ].map((stat, i) => (
-                    <div key={stat.label} className="text-center group">
-                      <span className="block font-headline text-5xl md:text-6xl text-tertiary italic mb-4">
-                        {stat.value}
-                      </span>
-                      <span className="block font-label text-[10px] uppercase tracking-[0.4em] text-white font-bold mb-2">
-                        {stat.label}
-                      </span>
-                      <span className="block text-white/50 text-[10px] italic font-light">
-                        {stat.sub}
-                      </span>
-                    </div>
-                  ))}
-                </div>
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <img
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop"
+            className="absolute inset-0 w-full h-full object-cover opacity-10 scale-110 grayscale"
+            alt=""
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-primary via-transparent to-primary" />
+        </div>
+        <div className="relative z-10 max-w-screen-xl mx-auto px-8 text-center">
+          <FadeIn>
+            <div className="text-center mb-16 px-4">
+              <span className="font-label text-xs tracking-[0.5em] text-tertiary mb-6 block uppercase font-bold">
+                Endorsements
+              </span>
+              <h2 className="font-headline text-5xl md:text-6xl text-white italic mb-16">
+                Partnering in Success
+              </h2>
+
+              {/* Integrated Stats */}
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-8 max-w-5xl mx-auto mb-20 border-y border-white/10 py-16">
+                {[
+                  {
+                    label: "Precision Case Closures",
+                    value: "500+",
+                    sub: "Successful legal outcomes",
+                  },
+                  {
+                    label: "Corporate Entities Managed",
+                    value: "150+",
+                    sub: "Ongoing strategic advisory",
+                  },
+                  {
+                    label: "Consultations Completed",
+                    value: "200+",
+                    sub: "Business strategy sessions",
+                  },
+                ].map((stat, i) => (
+                  <div key={stat.label} className="text-center group">
+                    <span className="block font-headline text-5xl md:text-6xl text-tertiary italic mb-4">
+                      {stat.value}
+                    </span>
+                    <span className="block font-label text-[10px] uppercase tracking-[0.4em] text-white font-bold mb-2">
+                      {stat.label}
+                    </span>
+                    <span className="block text-white/50 text-[10px] italic font-light">
+                      {stat.sub}
+                    </span>
+                  </div>
+                ))}
               </div>
-            </FadeIn>
-            <ReviewCarousel />
-         </div>
+            </div>
+          </FadeIn>
+          <ReviewCarousel />
+        </div>
       </section>
 
       {/* ── CTA Final ────────────────── */}
@@ -250,9 +231,9 @@ export default function Page() {
           <FadeIn>
             <div className="relative group flex flex-col lg:flex-row items-center justify-between gap-16 p-12 md:p-24 bg-primary rounded-[2.5rem] overflow-hidden border border-white/5 shadow-3xl">
               <div className="absolute inset-0 -z-1 opacity-20 filter grayscale group-hover:scale-105 transition-transform duration-[2000ms]">
-                <img 
-                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop" 
-                  alt="" 
+                <img
+                  src="https://images.unsplash.com/photo-1589829545856-d10d557cf95f?q=80&w=2070&auto=format&fit=crop"
+                  alt=""
                   className="w-full h-full object-cover"
                 />
               </div>

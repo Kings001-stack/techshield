@@ -68,6 +68,7 @@ const specializations = [
       "Leasing and title verification",
       "Transaction documentation",
       "Real estate investment advisory",
+      "Will, Trust and Estate Planning",
     ],
   },
   {
@@ -261,48 +262,62 @@ export default function SpecializationsGrid() {
         ))}
       </div>
 
-      {/* Compact Modal */}
+      {/* Enhanced Modal */}
       {selectedSpec &&
         mounted &&
         createPortal(
-          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 md:p-6">
             {/* Backdrop */}
             <div
-              className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+              className="absolute inset-0 bg-black/75 backdrop-blur-md transition-all"
               onClick={() => setActiveModal(null)}
             />
 
-            {/* Modal Container - Compact */}
-            <div className="relative z-10 w-full max-w-lg bg-surface rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
+            {/* Modal Container - Enhanced UI */}
+            <div className="relative z-10 w-full max-w-2xl bg-white rounded-3xl shadow-2xl overflow-hidden animate-in zoom-in-95 duration-300">
               {/* Close Button */}
               <button
                 onClick={() => setActiveModal(null)}
-                className="absolute top-4 right-4 z-30 w-8 h-8 bg-white/90 hover:bg-white text-primary rounded-full flex items-center justify-center transition-all shadow-lg"
+                className="absolute top-5 right-5 z-30 w-10 h-10 bg-primary/10 hover:bg-primary text-primary hover:text-white rounded-full flex items-center justify-center transition-all shadow-lg backdrop-blur-sm"
               >
-                <span className="material-symbols-outlined text-base">
-                  close
-                </span>
+                <span className="material-symbols-outlined text-lg">close</span>
               </button>
 
-              {/* Header with Animation */}
-              <div className="bg-primary p-6 sm:p-8 text-center">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 mx-auto mb-4 bg-white rounded-2xl p-4 shadow-xl">
-                  <LottiePlayer
-                    key={selectedSpec.id}
-                    url={selectedSpec.animationUrl}
-                    preloadedData={
-                      preloadedAnimations[selectedSpec.animationUrl]
-                    }
-                  />
+              {/* Header with Animation - Improved */}
+              <div className="bg-gradient-to-br from-primary via-primary to-primary/90 p-8 md:p-12 text-center relative overflow-hidden">
+                {/* Decorative background pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <div className="absolute top-0 right-0 w-64 h-64 bg-white rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+                  <div className="absolute bottom-0 left-0 w-64 h-64 bg-tertiary rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
                 </div>
-                <h2 className="text-2xl sm:text-3xl font-headline italic text-white leading-tight px-4">
-                  {selectedSpec.title}
-                </h2>
+
+                <div className="relative z-10">
+                  {/* Animation Container */}
+                  <div className="w-28 h-28 md:w-36 md:h-36 mx-auto mb-6 bg-white rounded-3xl p-5 md:p-6 shadow-2xl transform hover:scale-105 transition-transform duration-300">
+                    <LottiePlayer
+                      key={selectedSpec.id}
+                      url={selectedSpec.animationUrl}
+                      preloadedData={
+                        preloadedAnimations[selectedSpec.animationUrl]
+                      }
+                    />
+                  </div>
+
+                  {/* Title */}
+                  <h2 className="text-2xl md:text-4xl font-headline italic text-white leading-tight px-4 mb-3">
+                    {selectedSpec.title}
+                  </h2>
+
+                  {/* Subtitle badge */}
+                  <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-[10px] font-label uppercase tracking-widest text-white/90 font-bold">
+                    Specialty Focus
+                  </span>
+                </div>
               </div>
 
-              {/* Description */}
-              <div className="p-6 sm:p-8">
-                <p className="text-base sm:text-lg text-on-surface-variant font-light leading-relaxed text-center">
+              {/* Description - Enhanced */}
+              <div className="p-8 md:p-12 bg-gradient-to-b from-surface to-white">
+                <p className="text-base md:text-lg text-on-surface-variant font-light leading-relaxed text-center max-w-xl mx-auto">
                   {selectedSpec.desc}
                 </p>
               </div>

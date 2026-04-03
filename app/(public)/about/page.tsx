@@ -1,33 +1,43 @@
 import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
-import SpecializationsGrid from "@/app/components/SpecializationsGrid";
 
 export default function Page() {
   return (
-    <div className="page-enter bg-surface pt-24 md:pt-28">
-      {/* ── Hero ─────────────────────────────── */}
-      {/* ── Hero ─────────────────────────────── */}
-      <section className="py-20 md:py-24 max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 mb-8 mt-4 md:mt-0">
-        <FadeIn>
-          <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 md:mb-12 uppercase text-[10px] md:text-xs">
-            <span className="w-8 md:w-12 h-px bg-tertiary" />
-            Empowering Business Success
-          </span>
-        </FadeIn>
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-end">
-          <FadeIn delay={100} className="lg:col-span-8">
-            <h1 className="font-headline text-5xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tighter text-primary italic">
-              Solving Today. <br />
-              Protecting Tomorrow.
-            </h1>
+    <div className="page-enter bg-surface">
+      {/* ── Hero with Background ─────────────────────────────── */}
+      <section className="relative py-20 md:py-24 mb-8 overflow-hidden pt-24 md:pt-28">
+        {/* Background Image */}
+        <div className="absolute inset-0 pointer-events-none">
+          <img
+            src="/assets/about/bg-hero.jpg"
+            alt="TechShield Legal"
+            className="absolute inset-0 w-full h-full object-cover opacity-40"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-surface/60 via-surface/75 to-surface" />
+        </div>
+
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+          <FadeIn>
+            <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 md:mb-12 uppercase text-[10px] md:text-xs">
+              <span className="w-8 md:w-12 h-px bg-tertiary" />
+              Empowering Business Success
+            </span>
           </FadeIn>
-          <FadeIn delay={220} className="lg:col-span-4 pb-4">
-            <p className="text-on-surface-variant text-lg md:text-2xl leading-relaxed max-w-sm font-light">
-              TechShield Legal Services provides discrete, business-focused
-              counsel designed to solve immediate challenges while architecting
-              long-term sustainability.
-            </p>
-          </FadeIn>
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-end">
+            <FadeIn delay={100} className="lg:col-span-8">
+              <h1 className="font-headline text-5xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tighter text-primary italic">
+                Solving Today. <br />
+                Protecting Tomorrow.
+              </h1>
+            </FadeIn>
+            <FadeIn delay={220} className="lg:col-span-4 pb-4">
+              <p className="text-on-surface-variant text-lg md:text-2xl leading-relaxed max-w-sm font-light">
+                TechShield Legal Services provides discrete, business-focused
+                counsel designed to solve immediate challenges while
+                architecting long-term sustainability.
+              </p>
+            </FadeIn>
+          </div>
         </div>
       </section>
 
@@ -96,6 +106,78 @@ export default function Page() {
                   <span className="w-12 h-px bg-tertiary opacity-40 shadow-sm shadow-tertiary" />
                   <span className="font-headline italic text-primary text-xl md:text-2xl">
                     Geraldine Mbah, Esq.
+                  </span>
+                </div>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Co-Founder Bio ────────────────────────── */}
+      <section className="bg-surface py-20 md:py-40">
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-start">
+            {/* Portrait Container - Right Side on Desktop, First on Mobile */}
+            <FadeIn direction="right" delay={100} className="lg:order-2">
+              <div className="relative group">
+                <div className="aspect-[4/5] bg-gradient-to-br from-primary via-surface-container-high to-surface-container-low rounded-xl overflow-hidden shadow-2xl relative">
+                  <div className="absolute inset-x-6 md:inset-x-10 bottom-0 top-12 md:top-20 bg-primary/5 -z-1" />
+                  <img
+                    alt="Co-Founder"
+                    className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105 filter brightness-105"
+                    src="/assets/about/co-founder.png"
+                  />
+                </div>
+                {/* Signature overlay */}
+                <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 hidden xl:flex w-72 h-80 bg-primary rounded-xl p-12 flex-col justify-end shadow-2xl skew-x-[6deg]">
+                  <div className="skew-x-[-6deg]">
+                    <span className="text-tertiary font-headline text-5xl mb-6 italic block">
+                      A.J.J.
+                    </span>
+                    <p className="text-white text-[10px] tracking-[0.3em] leading-loose uppercase font-bold opacity-70">
+                      Co-Founder &amp; Partner
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </FadeIn>
+
+            {/* Bio Content - Left Side on Desktop, Second on Mobile */}
+            <FadeIn direction="left" className="lg:pt-12 lg:order-1">
+              <span className="w-16 h-px bg-tertiary mb-8 md:mb-10 block" />
+              <h2 className="font-headline text-3xl md:text-5xl text-primary mb-8 md:mb-12 italic leading-tight">
+                Co-Founder — <br />
+                Dr. Ayodeji J. Jayeoba,{" "}
+                <span className="text-tertiary underline underline-offset-[12px] decoration-outline-variant/30">
+                  Ph.D.
+                </span>
+              </h2>
+              <div className="space-y-6 md:space-y-10 text-on-surface text-base md:text-xl leading-relaxed font-light">
+                <p>
+                  Dr. Ayodeji J. Jayeoba brings a unique interdisciplinary
+                  perspective to TechShield Legal Services, combining deep
+                  expertise in strategic business development, organizational
+                  management, and regulatory compliance frameworks.
+                </p>
+                <p>
+                  With extensive experience in corporate governance, risk
+                  management, and institutional capacity building, Dr. Jayeoba
+                  specializes in helping organizations navigate complex
+                  regulatory environments while building sustainable operational
+                  structures that drive long-term growth and compliance.
+                </p>
+                <div className="bg-surface-container-high px-8 md:px-12 py-8 md:py-12 border-l-4 border-tertiary relative">
+                  <p className="italic font-serif text-xl md:text-3xl text-primary leading-snug">
+                    &ldquo;Strategic legal counsel must integrate business
+                    intelligence with regulatory foresight to create sustainable
+                    competitive advantages.&rdquo;
+                  </p>
+                </div>
+                <div className="pt-8 md:pt-12 flex items-center gap-6 md:gap-8">
+                  <span className="w-12 h-px bg-tertiary opacity-40 shadow-sm shadow-tertiary" />
+                  <span className="font-headline italic text-primary text-xl md:text-2xl">
+                    Dr. Ayodeji J. Jayeoba
                   </span>
                 </div>
               </div>
@@ -225,24 +307,70 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── Expertise Points ──────────────────── */}
-      <section className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 py-32 md:py-48 bg-surface">
-        <FadeIn>
-          <div className="mb-16 md:mb-24 text-center">
-            <span className="font-label text-[10px] md:text-xs tracking-[0.5em] uppercase text-tertiary mb-4 md:mb-6 block font-bold">
-              Authority & Insight
-            </span>
-            <h2 className="font-headline text-4xl md:text-6xl text-primary italic underline underline-offset-[12px] md:underline-offset-[16px] decoration-tertiary/10 leading-tight">
-              Key Specializations
-            </h2>
-          </div>
-        </FadeIn>
+      {/* ── Why TechShield ──────────────────── */}
+      <section className="py-32 md:py-48 relative overflow-hidden bg-primary">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+          <img
+            src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?q=80&w=2071&auto=format&fit=crop"
+            className="w-full h-full object-cover grayscale"
+            alt=""
+          />
+          <div className="absolute inset-0 bg-primary/80" />
+        </div>
 
-        <SpecializationsGrid />
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+          <FadeIn>
+            <div className="mb-20 md:mb-24 text-center">
+              <span className="w-12 h-px bg-tertiary mx-auto mb-8 block" />
+              <h2 className="font-headline text-5xl md:text-6xl text-white italic">
+                Why TechShield?
+              </h2>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
+            {[
+              {
+                title: "Veteran Leadership",
+                body: "Directed by Geraldine Mbah, LL.M (USA), bringing over 15 years of seasoned counsel to your boardroom.",
+                icon: "shield_with_heart",
+              },
+              {
+                title: "Multi-Sector Mastery",
+                body: "Deep expertise in corporate, commercial, real estate, and IP law across local and international markets.",
+                icon: "account_balance",
+              },
+              {
+                title: "Strategic Advisory",
+                body: "Practical, data-driven legal strategies designed for business owners, property investors, and growing startups.",
+                icon: "monitoring",
+              },
+              {
+                title: "Capacity Building",
+                body: "Unique training programs to equip your internal teams with essential regulatory and compliance knowledge.",
+                icon: "model_training",
+              },
+            ].map((feature, i) => (
+              <FadeIn key={feature.title} delay={i * 100}>
+                <div className="p-12 h-full flex flex-col items-center text-center bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all group">
+                  <span className="material-symbols-outlined text-4xl text-tertiary mb-10 group-hover:scale-110 transition-transform">
+                    {feature.icon}
+                  </span>
+                  <h3 className="text-2xl font-headline mb-6 text-white italic">
+                    {feature.title}
+                  </h3>
+                  <p className="text-white/70 text-base leading-relaxed font-light">
+                    {feature.body}
+                  </p>
+                </div>
+              </FadeIn>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ── CTA ──────────────────────────────── */}
-      <section className="max-w-[calc(100%-3rem)] md:max-w-screen-2xl mx-auto px-6 md:px-12 py-32 md:py-48 text-center bg-primary rounded-2xl md:rounded-3xl mb-24 overflow-hidden shadow-2xl relative">
+      <section className="mx-6 md:mx-8 lg:mx-12 px-6 md:px-12 py-32 md:py-48 text-center bg-primary rounded-2xl md:rounded-3xl mt-24 mb-24 overflow-hidden shadow-2xl relative">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-tertiary/20 opacity-40 pointer-events-none" />
         <FadeIn>
           <div className="max-w-4xl mx-auto relative z-10">

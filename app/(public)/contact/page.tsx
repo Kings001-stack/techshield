@@ -48,11 +48,13 @@ function ContactForm() {
       newErrors.phone = "Phone number is too short";
     }
     if (!formData.service) newErrors.service = "Please select a service";
-    
+
     // Message is only strictly required for non-bookings
-    const isBooking = formData.service === "Legal Consultation" || (formData.date && formData.time);
+    const isBooking =
+      formData.service === "Legal Consultation" ||
+      (formData.date && formData.time);
     if (!isBooking && !formData.message.trim()) {
-        newErrors.message = "Please describe your legal matter";
+      newErrors.message = "Please describe your legal matter";
     }
 
     if (isBooking) {
@@ -64,7 +66,11 @@ function ContactForm() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >,
+  ) => {
     const { id, value } = e.target;
     setFormData((prev) => ({ ...prev, [id]: value }));
     // Clear error for this field
@@ -102,7 +108,7 @@ function ContactForm() {
             preferred_date: formData.date,
             preferred_time: formData.time,
           }
-          : {
+        : {
             name: formData.name,
             email: formData.email,
             phone: `${formData.countryCode}${formData.phone}`,
@@ -123,7 +129,7 @@ function ContactForm() {
         toast.success(
           isBooking
             ? "Your consultation request has been received. We will confirm shortly."
-            : "Your inquiry has been submitted. Our team will reach out within 24 hours."
+            : "Your inquiry has been submitted. Our team will reach out within 24 hours.",
         );
         setFormData({
           name: "",
@@ -143,7 +149,9 @@ function ContactForm() {
     } catch (err) {
       console.error("Submission error:", err);
       toast.error(
-        err instanceof Error ? err.message : "An unexpected error occurred. Please try again later."
+        err instanceof Error
+          ? err.message
+          : "An unexpected error occurred. Please try again later.",
       );
       window.scrollTo({ top: 0, behavior: "smooth" });
     } finally {
@@ -152,9 +160,9 @@ function ContactForm() {
   };
 
   return (
-    <div className="page-enter">
+    <div className="page-enter pt-24 md:pt-28">
       {/* ── Hero ─────────────────────────────── */}
-      <section className="pt-28 pb-16 md:pt-40 md:pb-24 max-w-screen-2xl mx-auto px-6 md:px-8 mb-4">
+      <section className="pt-8 pb-16 md:pt-12 md:pb-24 max-w-screen-2xl mx-auto px-6 md:px-8 mb-4">
         <FadeIn>
           <span className="inline-flex items-center gap-3 text-tertiary font-label font-semibold tracking-[0.25em] mb-6 md:mb-8 uppercase text-[10px] md:text-xs">
             <span className="gold-rule" />
@@ -211,7 +219,11 @@ function ContactForm() {
                       placeholder="e.g. Julian Vane"
                       className={`sig-input ${errors.name ? "border-error ring-1 ring-error/20" : ""}`}
                     />
-                    {errors.name && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.name}</p>}
+                    {errors.name && (
+                      <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                        {errors.name}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-1.5">
                     <label htmlFor="email" className="sig-label">
@@ -225,7 +237,11 @@ function ContactForm() {
                       placeholder="name@firm.com"
                       className={`sig-input ${errors.email ? "border-error ring-1 ring-error/20" : ""}`}
                     />
-                    {errors.email && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.email}</p>}
+                    {errors.email && (
+                      <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                        {errors.email}
+                      </p>
+                    )}
                   </div>
                 </div>
 
@@ -262,7 +278,11 @@ function ContactForm() {
                         className={`sig-input flex-1 !rounded-l-none border-l-0 ${errors.phone ? "border-error ring-1 ring-error/20" : ""}`}
                       />
                     </div>
-                    {errors.phone && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.phone}</p>}
+                    {errors.phone && (
+                      <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                        {errors.phone}
+                      </p>
+                    )}
                   </div>
                   <div className="space-y-1.5">
                     <label htmlFor="service" className="sig-label">
@@ -274,28 +294,45 @@ function ContactForm() {
                       onChange={handleChange}
                       className={`sig-input cursor-pointer appearance-none bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2374777f%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E')] bg-[length:0.7em_0.7em] bg-[right:1.2rem_center] bg-no-repeat ${errors.service ? "border-error ring-1 ring-error/20" : ""}`}
                     >
-                      <option value="" disabled>Choose Department…</option>
-                      <option value="Business Formation">Corporate Structuring</option>
-                      <option value="Contract Review">Contractual Integrity</option>
-                      <option value="Transactional Services">Transactional Mergers</option>
-                      <option value="Legal Consultation">Strategic Advisory</option>
+                      <option value="" disabled>
+                        Choose Department…
+                      </option>
+                      <option value="Business Formation">
+                        Corporate Structuring
+                      </option>
+                      <option value="Contract Review">
+                        Contractual Integrity
+                      </option>
+                      <option value="Transactional Services">
+                        Transactional Mergers
+                      </option>
+                      <option value="Legal Consultation">
+                        Strategic Advisory
+                      </option>
                       <option value="Other">Custom Counsel Inquiry</option>
                     </select>
-                    {errors.service && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.service}</p>}
+                    {errors.service && (
+                      <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                        {errors.service}
+                      </p>
+                    )}
                   </div>
                 </div>
 
                 {/* Booking Fields (Conditional Shadowing) */}
-                {(formData.service === "Legal Consultation" || formData.date) && (
+                {(formData.service === "Legal Consultation" ||
+                  formData.date) && (
                   <FadeIn
                     delay={0}
                     className="bg-surface-container-low p-6 md:p-8 rounded-xl border border-outline-variant/10 space-y-5 animate-in slide-in-from-top-4 duration-500"
                   >
                     <div className="flex items-center gap-3 mb-2">
-                        <span className="material-symbols-outlined text-tertiary">calendar_today</span>
-                        <h3 className="font-headline text-lg text-primary italic">
-                          Mandatory Scheduling
-                        </h3>
+                      <span className="material-symbols-outlined text-tertiary">
+                        calendar_today
+                      </span>
+                      <h3 className="font-headline text-lg text-primary italic">
+                        Mandatory Scheduling
+                      </h3>
                     </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       <div className="space-y-1.5">
@@ -309,7 +346,11 @@ function ContactForm() {
                           onChange={handleChange}
                           className={`sig-input ${errors.date ? "border-error ring-1 ring-error/20" : ""}`}
                         />
-                        {errors.date && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.date}</p>}
+                        {errors.date && (
+                          <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                            {errors.date}
+                          </p>
+                        )}
                       </div>
                       <div className="space-y-1.5">
                         <label htmlFor="time" className="sig-label">
@@ -327,7 +368,11 @@ function ContactForm() {
                           <option value="02:00 PM">02:00 PM</option>
                           <option value="04:00 PM">04:00 PM</option>
                         </select>
-                        {errors.time && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.time}</p>}
+                        {errors.time && (
+                          <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                            {errors.time}
+                          </p>
+                        )}
                       </div>
                     </div>
                   </FadeIn>
@@ -346,7 +391,11 @@ function ContactForm() {
                     placeholder="Briefly describe the legal matter or transaction you need assistance with…"
                     className={`sig-input resize-none h-40 ${errors.message ? "border-error ring-1 ring-error/20" : ""}`}
                   />
-                  {errors.message && <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">{errors.message}</p>}
+                  {errors.message && (
+                    <p className="text-[10px] text-error font-bold uppercase tracking-widest pl-1">
+                      {errors.message}
+                    </p>
+                  )}
                 </div>
 
                 {/* Privacy note */}
@@ -430,7 +479,8 @@ function ContactForm() {
                         <div
                           className={`w-10 h-10 rounded-full ${item.bg} flex items-center justify-center shrink-0 overflow-hidden`}
                         >
-                          {item.iconType === "svg" || item.iconType === "image" ? (
+                          {item.iconType === "svg" ||
+                          item.iconType === "image" ? (
                             <img
                               src={item.icon}
                               alt={`${item.label} icon`}
@@ -457,8 +507,14 @@ function ContactForm() {
                       <Link
                         key={item.label}
                         href={item.href!}
-                        target={item.label === "WhatsApp" ? "_blank" : undefined}
-                        rel={item.label === "WhatsApp" ? "noopener noreferrer" : undefined}
+                        target={
+                          item.label === "WhatsApp" ? "_blank" : undefined
+                        }
+                        rel={
+                          item.label === "WhatsApp"
+                            ? "noopener noreferrer"
+                            : undefined
+                        }
                         className="flex items-center gap-4 rounded-lg bg-white/10 backdrop-blur-sm p-4 hover:bg-white/20 transition-all border border-white/5 group"
                       >
                         {Content}
@@ -486,7 +542,10 @@ function ContactForm() {
                     src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3939.818043685806!2d7.4725!3d9.07!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x104e0af9a4f9a4f9%3A0x1234567890abcdef!2sDBM%20Plaza!5e0!3m2!1sen!2sng!4v1711690000000!5m2!1sen!2sng&q=DBM+Plaza+Aminu+Kano+Crescent+Wuse+II+Abuja"
                     width="100%"
                     height="100%"
-                    style={{ border: 0, filter: "grayscale(1) contrast(1.1) brightness(0.9)" }}
+                    style={{
+                      border: 0,
+                      filter: "grayscale(1) contrast(1.1) brightness(0.9)",
+                    }}
                     allowFullScreen={true}
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
@@ -498,7 +557,7 @@ function ContactForm() {
                     Live Location
                   </div>
                 </div>
-                
+
                 <div className="p-8 md:p-10 flex flex-col justify-between flex-1">
                   <div>
                     <h3 className="font-headline text-2xl text-primary mb-5 italic">
@@ -517,7 +576,6 @@ function ContactForm() {
                       <span className="material-symbols-outlined text-base">
                         location_on
                       </span>
-        
                     </div>
                     <span className="w-12 h-px bg-tertiary/30" />
                   </div>

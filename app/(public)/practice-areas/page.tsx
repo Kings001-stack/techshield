@@ -28,6 +28,7 @@ const practiceAreas = [
       "Leasehold agreements and commercial management",
       "Sale deeds and ownership transfers",
       "Project financing for large-scale property development",
+      "Will, Trust and Estate Planning",
     ],
   },
   {
@@ -75,8 +76,7 @@ const practiceAreas = [
   {
     id: "labor-law",
     title: "Employment & Labor Law",
-    image:
-      "/assets/practice-areas/employ.jpg",
+    image: "/assets/practice-areas/employ.jpg",
     description:
       "Balancing organizational interests with workforce rights through precise contract drafting and labor regulatory compliance.",
     icon: "groups",

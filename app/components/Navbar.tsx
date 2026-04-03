@@ -37,11 +37,13 @@ export default function Navbar() {
   }
 
   const isDarkHeroPage = pathname?.startsWith("/practice-areas");
-  const navTextColor = scrolled
-    ? "text-primary/70"
-    : isDarkHeroPage
-      ? "text-white"
-      : "text-primary/70";
+  const isAboutPage = pathname === "/about";
+  const navTextColor =
+    scrolled || isAboutPage
+      ? "text-primary/70"
+      : isDarkHeroPage
+        ? "text-white"
+        : "text-primary/70";
   const navActiveColor = "text-tertiary";
   const logoFilter = !scrolled && isDarkHeroPage ? "brightness-125" : "";
   const btnTheme =
@@ -49,11 +51,12 @@ export default function Navbar() {
       ? "bg-white text-primary hover:bg-tertiary hover:text-white"
       : "bg-primary text-on-primary hover:bg-tertiary";
 
-  const navBg = scrolled
-    ? "bg-surface/90 backdrop-blur-xl border-b border-outline-variant/10 py-4 shadow-sm"
-    : isDarkHeroPage
-      ? "bg-primary/95 backdrop-blur-md py-7 border-b border-white/5"
-      : "bg-transparent py-7";
+  const navBg =
+    scrolled || isAboutPage
+      ? "bg-surface/90 backdrop-blur-xl border-b border-outline-variant/10 py-4 shadow-sm"
+      : isDarkHeroPage
+        ? "bg-primary/95 backdrop-blur-md py-7 border-b border-white/5"
+        : "bg-transparent py-7";
 
   return (
     <nav
@@ -101,9 +104,9 @@ export default function Navbar() {
               className={`group flex items-center gap-2 text-[10px] font-label font-bold uppercase tracking-[0.2em] hover:text-tertiary transition-colors ${navTextColor}`}
             >
               <img
-                src="/assets/whatapp-icon.png"
+                src="/assets/whatsapp-icon.svg"
                 alt="WhatsApp icon"
-                className={`w-4 h-4 transition-all duration-300 ${!scrolled && isDarkHeroPage ? "invert brightness-200" : ""}`}
+                className={`w-4 h-4 transition-all duration-300 ${!scrolled && isDarkHeroPage ? "brightness-0 invert" : ""}`}
               />
               WhatsApp
               <span className="material-symbols-outlined text-sm">
