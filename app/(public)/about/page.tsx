@@ -1,5 +1,27 @@
 import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
+import TestimonialCarousel from "@/app/components/TestimonialCarousel";
+import PracticeAreasGrid from "@/app/components/PracticeAreasGrid";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "About Us | TechShield Legal Services",
+  description:
+    "Meet Geraldine Mbah, LL.M (USA), founder of TechShield Legal Services with 15+ years experience in corporate, commercial, and property law. Learn about our mission, vision, and expert team providing strategic legal solutions for Nigerian businesses.",
+  keywords: [
+    "Geraldine Mbah lawyer",
+    "Nigerian law firm",
+    "corporate lawyer Nigeria",
+    "business law firm Lagos",
+    "legal services team",
+  ],
+  openGraph: {
+    title: "About Us | TechShield Legal Services",
+    description:
+      "Led by Geraldine Mbah, LL.M (USA) with 15+ years experience. Expert legal team serving businesses across Nigeria.",
+    url: "https://techshieldlegal.com/about",
+  },
+};
 
 export default function Page() {
   return (
@@ -114,153 +136,68 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── Co-Founder Bio ────────────────────────── */}
+      {/* ── Editor Bio ────────────────────────── */}
       <section className="bg-surface py-20 md:py-40">
         <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-start">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-32 items-center">
             {/* Portrait Container - Right Side on Desktop, First on Mobile */}
             <FadeIn direction="right" delay={100} className="lg:order-2">
               <div className="relative group">
-                <div className="aspect-[4/5] bg-gradient-to-br from-primary via-surface-container-high to-surface-container-low rounded-xl overflow-hidden shadow-2xl relative">
-                  <div className="absolute inset-x-6 md:inset-x-10 bottom-0 top-12 md:top-20 bg-primary/5 -z-1" />
+                <div className="aspect-square bg-gradient-to-br from-surface-container-high to-surface-container rounded-2xl overflow-hidden shadow-lg relative max-w-md mx-auto">
                   <img
-                    alt="Co-Founder"
-                    className="w-full h-full object-contain transition-transform duration-1000 group-hover:scale-105 filter brightness-105"
+                    alt="Editor"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                     src="/assets/about/co-founder.png"
                   />
-                </div>
-                {/* Signature overlay */}
-                <div className="absolute -bottom-6 -left-6 md:-bottom-10 md:-left-10 hidden xl:flex w-72 h-80 bg-primary rounded-xl p-12 flex-col justify-end shadow-2xl skew-x-[6deg]">
-                  <div className="skew-x-[-6deg]">
-                    <span className="text-tertiary font-headline text-5xl mb-6 italic block">
-                      A.J.J.
-                    </span>
-                    <p className="text-white text-[10px] tracking-[0.3em] leading-loose uppercase font-bold opacity-70">
-                      Co-Founder &amp; Partner
-                    </p>
-                  </div>
                 </div>
               </div>
             </FadeIn>
 
             {/* Bio Content - Left Side on Desktop, Second on Mobile */}
-            <FadeIn direction="left" className="lg:pt-12 lg:order-1">
-              <span className="w-16 h-px bg-tertiary mb-8 md:mb-10 block" />
-              <h2 className="font-headline text-3xl md:text-5xl text-primary mb-8 md:mb-12 italic leading-tight">
-                Co-Founder — <br />
-                Dr. Ayodeji J. Jayeoba,{" "}
-                <span className="text-tertiary underline underline-offset-[12px] decoration-outline-variant/30">
-                  Ph.D.
-                </span>
+            <FadeIn direction="left" className="lg:order-1">
+              <span className="text-[10px] md:text-xs font-label uppercase tracking-[0.3em] text-tertiary mb-6 block font-bold">
+                Editorial Team
+              </span>
+              <h2 className="font-headline text-3xl md:text-5xl text-primary mb-6 md:mb-8 italic leading-tight">
+                Dr. Ayodeji J. Jayeoba
               </h2>
-              <div className="space-y-6 md:space-y-10 text-on-surface text-base md:text-xl leading-relaxed font-light">
+              <p className="text-sm md:text-base text-tertiary mb-8 font-medium">
+                Editor, Ph.D.
+              </p>
+              <div className="space-y-4 md:space-y-6 text-on-surface text-base md:text-lg leading-relaxed font-light">
                 <p>
-                  Dr. Ayodeji J. Jayeoba brings a unique interdisciplinary
-                  perspective to TechShield Legal Services, combining deep
-                  expertise in strategic business development, organizational
-                  management, and regulatory compliance frameworks.
+                  Dr. Jayeoba oversees editorial content and quality assurance
+                  for TechShield Legal Services, ensuring all published
+                  materials meet the highest standards of legal accuracy and
+                  professional excellence.
                 </p>
                 <p>
-                  With extensive experience in corporate governance, risk
-                  management, and institutional capacity building, Dr. Jayeoba
-                  specializes in helping organizations navigate complex
-                  regulatory environments while building sustainable operational
-                  structures that drive long-term growth and compliance.
+                  With a Ph.D. and extensive background in legal research and
+                  documentation, Dr. Jayeoba brings meticulous attention to
+                  detail and scholarly rigor to the firm's communications and
+                  client-facing materials.
                 </p>
-                <div className="bg-surface-container-high px-8 md:px-12 py-8 md:py-12 border-l-4 border-tertiary relative">
-                  <p className="italic font-serif text-xl md:text-3xl text-primary leading-snug">
-                    &ldquo;Strategic legal counsel must integrate business
-                    intelligence with regulatory foresight to create sustainable
-                    competitive advantages.&rdquo;
-                  </p>
-                </div>
-                <div className="pt-8 md:pt-12 flex items-center gap-6 md:gap-8">
-                  <span className="w-12 h-px bg-tertiary opacity-40 shadow-sm shadow-tertiary" />
-                  <span className="font-headline italic text-primary text-xl md:text-2xl">
-                    Dr. Ayodeji J. Jayeoba
-                  </span>
-                </div>
               </div>
             </FadeIn>
           </div>
         </div>
       </section>
 
-      {/* ── Expert Associates (Team Section) ── */}
-      <section className="py-32 md:py-48 bg-surface">
-        <div className="max-w-screen-2xl mx-auto px-6 md:px-12">
+      {/* ── Client Testimonials Carousel ────────────────────────── */}
+      <section className="py-32 md:py-48 bg-surface-container-low relative overflow-hidden">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-12">
           <FadeIn>
-            <div className="mb-20 md:mb-32 max-w-3xl text-left">
-              <span className="font-label text-[10px] md:text-xs tracking-[0.5em] text-tertiary mb-6 block uppercase font-bold">
-                Collaborative Excellence
+            <div className="text-center mb-16 md:mb-20">
+              <span className="text-[10px] md:text-xs font-label uppercase tracking-[0.4em] text-tertiary mb-6 block font-bold">
+                Client Voices
               </span>
-              <h2 className="font-headline text-5xl md:text-7xl text-primary italic leading-tight">
-                The Technical <br /> Mindset.
+              <h2 className="font-headline text-4xl md:text-6xl text-primary italic">
+                What Our Clients Say
               </h2>
-              <p className="text-on-surface-variant text-lg md:text-2xl mt-8 font-light leading-relaxed">
-                Behind our principal counsel is a multi-disciplinary team of
-                legal researchers, corporate advisors, and administrative
-                architects dedicated to your growth.
-              </p>
             </div>
           </FadeIn>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
-            {[
-              {
-                name: "Olawale Benson",
-                role: "Senior Associate",
-                spec: "Legal Strategy & Compliance",
-                img: "/assets/about/ola.jpg",
-                bio: "Expert in cross-border regulatory compliance and complex commercial litigation strategy.",
-              },
-              {
-                name: "Chinelo Okoro",
-                role: "Junior Associate",
-                spec: "Corporate Advisory",
-                img: "/assets/about/chi.jpg",
-                bio: "Focuses on startup legal architecture and intellectual property portfolio management.",
-              },
-              {
-                name: "Chinedu Udechukwu",
-                role: "Paralegal",
-                spec: "Case Research & Analysis",
-                img: "/assets/about/chinedu.jpg",
-                bio: "Specializes in deep legal research and precision documentation for property transactions.",
-              },
-              {
-                name: "Olisa okonkwo",
-                role: "Administrative Lead",
-                spec: "Client Success & Operations",
-                img: "/assets/about/okon.jpg",
-                bio: "Ensures seamless operational delivery and exceptional client relationship management.",
-              },
-            ].map((member, i) => (
-              <FadeIn key={member.name} delay={i * 100}>
-                <div className="group space-y-6">
-                  <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-xl bg-surface-container relative">
-                    <img
-                      src={member.img}
-                      alt={member.name}
-                      className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  </div>
-                  <div>
-                    <h3 className="font-headline text-2xl text-primary italic mb-1">
-                      {member.name}
-                    </h3>
-                    <p className="text-[10px] font-label uppercase tracking-widest text-tertiary font-bold mb-4">
-                      {member.role}
-                    </p>
-                    <p className="text-on-surface-variant text-sm font-light leading-relaxed opacity-80">
-                      {member.bio}
-                    </p>
-                  </div>
-                </div>
-              </FadeIn>
-            ))}
-          </div>
+          <TestimonialCarousel />
         </div>
       </section>
 
@@ -369,6 +306,47 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ── Practice Areas Overview ──────────────────── */}
+      <section className="py-20 md:py-32 bg-surface">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-12">
+          <FadeIn>
+            <div className="text-center mb-16 md:mb-20">
+              <span className="text-[10px] md:text-xs font-label uppercase tracking-[0.4em] text-tertiary mb-6 block font-bold">
+                Legal Services
+              </span>
+              <h2 className="font-headline text-4xl md:text-6xl text-primary italic mb-8">
+                Practice Areas
+              </h2>
+              <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed font-light max-w-3xl mx-auto">
+                Our comprehensive legal services span multiple practice areas,
+                providing integrated solutions for businesses at every stage of
+                growth.
+              </p>
+            </div>
+          </FadeIn>
+
+          <PracticeAreasGrid />
+
+          <FadeIn delay={100}>
+            <div className="text-center mt-16 md:mt-20">
+              <p className="text-on-surface-variant mb-8 max-w-2xl mx-auto">
+                For detailed information about our specific services and
+                expertise, explore our Key Specializations.
+              </p>
+              <Link
+                href="/key-specializations"
+                className="btn-base bg-primary text-white px-10 md:px-12 py-5 md:py-6 hover:bg-tertiary shadow-lg text-[10px] md:text-xs font-label uppercase tracking-widest font-bold inline-flex items-center gap-3"
+              >
+                View Key Specializations
+                <span className="material-symbols-outlined text-sm">
+                  arrow_forward
+                </span>
+              </Link>
+            </div>
+          </FadeIn>
+        </div>
+      </section>
+
       {/* ── CTA ──────────────────────────────── */}
       <section className="mx-6 md:mx-8 lg:mx-12 px-6 md:px-12 py-32 md:py-48 text-center bg-primary rounded-2xl md:rounded-3xl mt-24 mb-24 overflow-hidden shadow-2xl relative">
         <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-tertiary/20 opacity-40 pointer-events-none" />
@@ -390,10 +368,10 @@ export default function Page() {
                 Book a Consultation
               </Link>
               <Link
-                href="/practice-areas"
+                href="/key-specializations"
                 className="btn-base border border-white/30 text-white w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 hover:bg-white/10 text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
               >
-                Practice Areas
+                Our Specializations
               </Link>
             </div>
           </div>

@@ -31,7 +31,7 @@ export default function FadeIn({
           observer.unobserve(el);
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.05 },
     );
 
     observer.observe(el);
@@ -40,12 +40,12 @@ export default function FadeIn({
 
   const initialTransform =
     direction === "up"
-      ? "translateY(32px)"
+      ? "translateY(20px)"
       : direction === "left"
-      ? "translateX(-32px)"
-      : direction === "right"
-      ? "translateX(32px)"
-      : "none";
+        ? "translateX(-20px)"
+        : direction === "right"
+          ? "translateX(20px)"
+          : "none";
 
   return (
     <div
@@ -54,7 +54,7 @@ export default function FadeIn({
       style={{
         opacity: 0,
         transform: initialTransform,
-        transition: `opacity 0.7s ease, transform 0.7s ease`,
+        transition: `opacity 0.4s ease, transform 0.4s ease`,
       }}
     >
       {children}

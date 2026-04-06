@@ -1,176 +1,115 @@
 import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
 
-const practiceAreas = [
-  {
-    id: "corporate",
-    title: "Corporate Business Law",
-    image: "/assets/practice-areas/corporate.png",
-    description:
-      "Strategic legal engineering for corporations, from entity selection to cross-border governance and daily industrial operations.",
-    icon: "corporate_fare",
-    details: [
-      "Company formation and industrial structuring",
-      "Corporate governance & global compliance audits",
-      "Shareholder agreements & board resolutions",
-      "Drafting and review of high-stakes commercial contracts",
-    ],
-  },
-  {
-    id: "real-estate",
-    title: "Real Estate & Property Law",
-    image: "/assets/practice-areas/real-estate.png",
-    description:
-      "Securing physical assets with meticulous due diligence and precise documentation for land acquisitions and leases.",
-    icon: "real_estate_agent",
-    details: [
-      "Property acquisition and rigorous title verification",
-      "Leasehold agreements and commercial management",
-      "Sale deeds and ownership transfers",
-      "Project financing for large-scale property development",
-      "Will, Trust and Estate Planning",
-    ],
-  },
-  {
-    id: "intellectual-property",
-    title: "Intellectual Property Law",
-    image: "/assets/practice-areas/intellectual-property.png",
-    description:
-      "Strategic advisory to protect your brand's unique identity, creative works, and industrial innovations in a competitive global market.",
-    icon: "copyright",
-    details: [
-      "Trademark registration and international renewals",
-      "Copyright notifications & brand protection strategies",
-      "Patent and industrial design filings",
-      "IP licensing and infringement mediation",
-    ],
-  },
-  {
-    id: "immigration",
-    title: "Immigration Law",
-    image: "/assets/practice-areas/governance.png",
-    description:
-      "Navigating the complexities of global mobility and residency, ensuring seamless transitions for talent and corporations.",
-    icon: "public",
-    details: [
-      "Business and work permit applications",
-      "Residency and citizenship advisory",
-      "Expatriate quota management",
-      "Compliance with international immigration protocols",
-    ],
-  },
-  {
-    id: "adr",
-    title: "Alternative Dispute Resolution (ADR)",
-    image: "/assets/practice-areas/transactions.png",
-    description:
-      "Efficient, private, and strategic resolution of disputes through mediation and arbitration, bypassing traditional litigation bottlenecks.",
-    icon: "handshake",
-    details: [
-      "Commercial mediation and negotiation",
-      "International arbitration advisory",
-      "Conflict resolution framework design",
-      "Private settlement agreements",
-    ],
-  },
-  {
-    id: "labor-law",
-    title: "Employment & Labor Law",
-    image: "/assets/practice-areas/employ.jpg",
-    description:
-      "Balancing organizational interests with workforce rights through precise contract drafting and labor regulatory compliance.",
-    icon: "groups",
-    details: [
-      "Employment contract drafting and review",
-      "Labor law compliance audits",
-      "Workplace policy development",
-      "Dismissal and redundancy advisory",
-    ],
-  },
-];
+export default function PracticeAreasPage() {
+  const practiceAreas = [
+    {
+      title: "Corporate & Commercial Law",
+      description:
+        "Comprehensive legal support for businesses of all sizes, from startups to established corporations.",
+      icon: "corporate_fare",
+    },
+    {
+      title: "Contract Law",
+      description:
+        "Expert drafting, review, and negotiation of commercial agreements and business contracts.",
+      icon: "description",
+    },
+    {
+      title: "Real Estate Law",
+      description:
+        "Full-service property law including acquisitions, leasing, and estate planning.",
+      icon: "home_work",
+    },
+    {
+      title: "Intellectual Property",
+      description:
+        "Protection and management of trademarks, copyrights, patents, and trade secrets.",
+      icon: "lightbulb",
+    },
+    {
+      title: "Regulatory Compliance",
+      description:
+        "Guidance on navigating complex regulatory frameworks and maintaining compliance.",
+      icon: "verified_user",
+    },
+    {
+      title: "Dispute Resolution",
+      description:
+        "Strategic approach to resolving business disputes through mediation and arbitration.",
+      icon: "balance",
+    },
+  ];
 
-export default function Page() {
   return (
-    <div className="page-enter bg-surface overflow-x-hidden">
-      {/* ── Hero ─────────────────────────── */}
-      <section className="py-24 md:py-48 max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative overflow-hidden bg-primary">
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="page-enter bg-surface">
+      {/* Hero Section */}
+      <section className="relative py-20 md:py-32 overflow-hidden bg-primary pt-24 md:pt-28">
+        <div className="absolute inset-0 pointer-events-none">
           <img
             src="/assets/practice-areas/bg-hero.jpg"
-            alt="TechShield Practice Areas"
-            className="absolute inset-0 w-full h-full object-cover opacity-20 transition-transform duration-[3000ms] hover:scale-105"
+            alt="Practice Areas"
+            className="w-full h-full object-cover opacity-20 brightness-50"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-primary via-primary/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-primary/80" />
         </div>
-        <FadeIn>
-          <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 md:mb-12 uppercase text-[10px] md:text-xs">
-            <span className="w-8 md:w-12 h-px bg-tertiary" />
-            Core Competencies
-          </span>
-          <h1 className="font-headline text-6xl md:text-9xl text-white tracking-tighter mb-6 md:mb-10 italic">
-            Practice <br /> Areas.
-          </h1>
-          <p className="text-white/70 text-xl md:text-2xl font-light max-w-3xl leading-relaxed">
-            TechShield Legal provides precise, high-stakes legal advisory across
-            corporate, commercial, and property sectors.
-          </p>
-        </FadeIn>
+
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12 relative z-10">
+          <FadeIn>
+            <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 md:mb-12 uppercase text-[10px] md:text-xs">
+              <span className="w-8 md:w-12 h-px bg-tertiary" />
+              Legal Services Overview
+            </span>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-16 items-end">
+            <FadeIn delay={100} className="lg:col-span-8">
+              <h1 className="font-headline text-5xl md:text-8xl lg:text-9xl leading-[0.95] tracking-tighter text-white italic">
+                Practice <br />
+                Areas
+              </h1>
+            </FadeIn>
+            <FadeIn delay={220} className="lg:col-span-4 pb-4">
+              <p className="text-white/80 text-lg md:text-2xl leading-relaxed max-w-sm font-light">
+                Broad legal expertise across multiple practice areas to serve
+                your business needs.
+              </p>
+            </FadeIn>
+          </div>
+        </div>
       </section>
 
-      {/* ── Cards Grid ────────────────────── */}
-      <section className="bg-surface-container-lowest py-20 md:py-32 rounded-t-[2.5rem] md:rounded-t-[4rem] shadow-2xl relative z-10 -mt-10 md:-mt-16">
-        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+      {/* Introduction */}
+      <section className="py-20 md:py-32 bg-surface">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-12">
+          <FadeIn>
+            <div className="max-w-4xl mx-auto text-center mb-20">
+              <h2 className="font-headline text-3xl md:text-5xl text-primary italic mb-8">
+                Comprehensive Legal Services
+              </h2>
+              <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed font-light">
+                TechShield Legal Services offers a wide range of legal practice
+                areas designed to support businesses at every stage of growth.
+                Our multidisciplinary approach ensures you receive integrated
+                legal solutions tailored to your specific needs.
+              </p>
+            </div>
+          </FadeIn>
+
+          {/* Practice Areas Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {practiceAreas.map((area, i) => (
-              <FadeIn
-                key={area.id}
-                delay={i * 100}
-                direction="up"
-                className="h-full"
-              >
-                <div
-                  id={area.id}
-                  className="group relative h-[320px] md:h-[400px] overflow-hidden rounded-xl md:rounded-2xl border border-outline-variant/10 shadow-lg hover:shadow-2xl transition-all duration-700 hover:-translate-y-2 cursor-pointer"
-                >
-                  {/* Full Background Image */}
-                  <img
-                    src={area.image}
-                    alt={area.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  />
-
-                  {/* Premium Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-primary via-primary/40 to-transparent opacity-80 group-hover:opacity-95 transition-opacity duration-700" />
-                  <div className="absolute inset-0 border-[0.5px] border-white/5 m-3 rounded-lg md:rounded-xl pointer-events-none" />
-
-                  {/* Content (Simplified) */}
-                  <div className="absolute inset-0 p-8 flex flex-col justify-end">
-                    <div className="flex items-center gap-4 mb-2">
-                      <span className="w-8 h-px bg-tertiary/60" />
-                      <span className="font-label text-[10px] uppercase tracking-[0.3em] text-tertiary">
-                        Specialization 0{i + 1}
-                      </span>
-                    </div>
-                    <h2 className="font-headline text-3xl md:text-4xl text-white italic leading-tight mb-2">
-                      {area.title}
-                    </h2>
-
-                    {/* Bottom CTA (Subtle) */}
-                    <Link
-                      href={`/contact?service=${encodeURIComponent(area.title)}`}
-                      className="inline-flex items-center gap-3 text-[10px] font-label font-bold uppercase tracking-[0.2em] text-white/50 group-hover:text-white transition-all mt-4"
-                    >
-                      Establish Counsel
-                      <span className="material-symbols-outlined text-[14px]">
-                        arrow_outward
-                      </span>
-                    </Link>
-                  </div>
-
-                  {/* Hover Shine Effect */}
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 pointer-events-none">
-                    <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-white/10 via-transparent to-transparent" />
-                  </div>
+              <FadeIn key={i} delay={i * 80}>
+                <div className="bg-surface-container p-8 md:p-10 rounded-2xl border border-outline-variant/10 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 h-full">
+                  <span className="material-symbols-outlined text-5xl text-tertiary mb-6 block">
+                    {area.icon}
+                  </span>
+                  <h3 className="font-headline text-2xl md:text-3xl text-primary italic mb-4 leading-tight">
+                    {area.title}
+                  </h3>
+                  <p className="text-on-surface-variant leading-relaxed font-light">
+                    {area.description}
+                  </p>
                 </div>
               </FadeIn>
             ))}
@@ -178,42 +117,61 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── Bottom Banner ─────────────────── */}
-      <section className="py-24 md:py-40 text-center bg-surface relative overflow-hidden">
-        <div className="max-w-4xl mx-auto px-8 relative z-10">
+      {/* Learn More Section */}
+      <section className="py-20 md:py-32 bg-surface-container-low">
+        <div className="max-w-screen-xl mx-auto px-6 md:px-8 lg:px-12">
           <FadeIn>
-            <h2 className="font-headline text-5xl md:text-6xl text-primary mb-8 md:mb-12 leading-tight">
-              Shielding Your <br className="md:hidden" />{" "}
-              <span className="text-tertiary">Innovations.</span>
-            </h2>
-            <p className="text-on-surface-variant text-lg md:text-xl mb-12 md:mb-16 font-light max-w-2xl mx-auto leading-relaxed">
-              Our multidisciplinary approach ensures that every business
-              decision you make is backed by airtight legal frameworks and
-              industry expertise.
-            </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4 md:gap-8">
+            <div className="text-center max-w-3xl mx-auto">
+              <h2 className="font-headline text-3xl md:text-5xl text-primary italic mb-8">
+                Want to Learn More?
+              </h2>
+              <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed font-light mb-12">
+                For detailed information about our specific services and how we
+                can help your business, explore our Key Specializations page.
+              </p>
               <Link
-                href="/contact"
-                className="btn-base bg-primary text-white w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-tertiary hover:shadow-2xl transition-all text-xs font-label uppercase tracking-widest font-bold"
+                href="/key-specializations"
+                className="btn-base bg-primary text-white px-10 md:px-12 py-5 md:py-6 hover:bg-tertiary shadow-lg text-[10px] md:text-xs font-label uppercase tracking-widest font-bold inline-flex items-center gap-3"
               >
-                Book consultation
-              </Link>
-              <Link
-                href={process.env.NEXT_PUBLIC_WHATSAPP_LINK || "#"}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-base border border-primary/20 text-primary w-full sm:w-auto px-10 md:px-12 py-5 hover:bg-primary-container/20 transition-all flex items-center justify-center gap-3 group text-xs font-label uppercase tracking-widest font-bold"
-              >
-                <img
-                  src="/assets/whatsapp-icon.svg"
-                  alt="WhatsApp icon"
-                  className="w-4 h-4 transition-all duration-300 shrink-0"
-                />
-                Direct Consult
+                View Key Specializations
+                <span className="material-symbols-outlined text-sm">
+                  arrow_forward
+                </span>
               </Link>
             </div>
           </FadeIn>
         </div>
+      </section>
+
+      {/* CTA */}
+      <section className="mx-6 md:mx-8 lg:mx-12 px-6 md:px-12 py-32 md:py-48 text-center bg-primary rounded-2xl md:rounded-3xl mt-24 mb-24 overflow-hidden shadow-2xl relative">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary via-primary to-tertiary/20 opacity-40 pointer-events-none" />
+        <FadeIn>
+          <div className="max-w-4xl mx-auto relative z-10">
+            <span className="w-12 md:w-16 h-px bg-tertiary mx-auto mb-8 md:mb-10 block" />
+            <h2 className="font-headline text-4xl md:text-7xl lg:text-8xl text-white mb-10 md:mb-16 italic font-normal leading-[1.1]">
+              Ready to Get Started?
+            </h2>
+            <p className="text-lg md:text-2xl text-white/70 mb-12 md:mb-20 leading-relaxed font-light max-w-2xl mx-auto">
+              Contact us today to discuss how our legal services can support
+              your business objectives.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 md:gap-8 justify-center">
+              <Link
+                href="/contact"
+                className="btn-base bg-white text-primary w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 hover:bg-tertiary hover:text-white shadow-2xl text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
+              >
+                Book a Consultation
+              </Link>
+              <Link
+                href="/about"
+                className="btn-base border border-white/30 text-white w-full sm:w-auto px-10 md:px-12 py-5 md:py-6 hover:bg-white/10 text-[10px] md:text-xs font-label uppercase tracking-widest font-bold"
+              >
+                About Our Team
+              </Link>
+            </div>
+          </div>
+        </FadeIn>
       </section>
     </div>
   );

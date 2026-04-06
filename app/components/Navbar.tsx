@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 
 const navLinks = [
   { label: "Home", href: "/" },
-  { label: "Practice Areas", href: "/practice-areas" },
+  { label: "Key Specializations", href: "/key-specializations" },
   { label: "About", href: "/about" },
   { label: "Contact", href: "/contact" },
 ];
@@ -36,7 +36,9 @@ export default function Navbar() {
     );
   }
 
-  const isDarkHeroPage = pathname?.startsWith("/practice-areas");
+  const isDarkHeroPage =
+    pathname?.startsWith("/practice-areas") ||
+    pathname?.startsWith("/key-specializations");
   const isAboutPage = pathname === "/about";
   const navTextColor =
     scrolled || isAboutPage
@@ -65,11 +67,11 @@ export default function Navbar() {
       <div className="max-w-screen-2xl mx-auto px-8 flex items-center justify-between">
         {/* Brand Logo with Scale of Justice */}
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="relative h-12 w-auto flex items-center justify-center transition-transform group-hover:scale-105">
+          <div className="relative h-20 md:h-24 w-auto flex items-center justify-center transition-transform group-hover:scale-105">
             <img
-              src="/assets/logo.png"
+              src="/assets/logo2.png"
               alt="TechShield Legal"
-              className={`h-12 w-auto object-contain filter drop-shadow-sm ${logoFilter}`}
+              className={`h-20 md:h-24 w-auto object-contain filter drop-shadow-sm ${logoFilter}`}
             />
           </div>
         </Link>

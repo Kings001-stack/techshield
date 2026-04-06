@@ -18,7 +18,7 @@ export default function Footer() {
               <img
                 src="/assets/logo.png"
                 alt="TechShield Legal"
-                className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+                className="h-16 md:h-20 w-auto object-contain transition-transform group-hover:scale-105"
               />
             </Link>
             <p className="text-on-surface-variant font-light text-base leading-relaxed max-w-sm mb-10">
@@ -66,10 +66,22 @@ export default function Footer() {
             </h4>
             <ul className="space-y-4">
               {[
-                { label: "Business Law", href: "/practice-areas#corporate" },
-                { label: "Transactions", href: "/practice-areas#transactions" },
-                { label: "Regulatory", href: "/practice-areas#regulatory" },
-                { label: "Property Law", href: "/practice-areas#real-estate" },
+                {
+                  label: "Business Law",
+                  href: "/key-specializations#corporate",
+                },
+                {
+                  label: "Transactions",
+                  href: "/key-specializations#transactions",
+                },
+                {
+                  label: "Regulatory",
+                  href: "/key-specializations#regulatory",
+                },
+                {
+                  label: "Property Law",
+                  href: "/key-specializations#real-estate",
+                },
               ].map((item) => (
                 <li key={item.label}>
                   <Link
@@ -92,7 +104,7 @@ export default function Footer() {
               {[
                 { label: "Our Mission", href: "/about" },
                 { label: "Principal Profile", href: "/about" },
-                { label: "Practice Areas", href: "/practice-areas" },
+                { label: "Key Specializations", href: "/key-specializations" },
                 { label: "Contact Us", href: "/contact" },
               ].map((link) => (
                 <li key={link.label}>

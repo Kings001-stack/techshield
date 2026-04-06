@@ -2,6 +2,20 @@ import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
 import ReviewCarousel from "@/app/components/ReviewCarousel";
 import SpecializationsGrid from "@/app/components/SpecializationsGrid";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title:
+    "TechShield Legal Services | Expert Business Law & Compliance Solutions Nigeria",
+  description:
+    "Leading Nigerian law firm providing corporate advisory, commercial transactions, regulatory compliance, real estate law, and IP protection. Serving businesses, startups, and property owners with 15+ years expertise. Contact us for strategic legal solutions.",
+  openGraph: {
+    title: "TechShield Legal Services | Expert Business Law Nigeria",
+    description:
+      "Strategic legal solutions for businesses, startups, and property owners in Nigeria.",
+    url: "https://techshieldlegal.com",
+  },
+};
 
 export default function Page() {
   return (
@@ -23,7 +37,7 @@ export default function Page() {
             <FadeIn delay={0}>
               <span className="inline-flex items-center gap-4 text-tertiary font-label font-bold tracking-[0.4em] mb-8 md:mb-12 uppercase text-[10px] md:text-xs">
                 <span className="w-8 md:w-12 h-px bg-tertiary" />
-                Strategic Legal Engineering
+                Strategic Legal Solutions
               </span>
             </FadeIn>
 
@@ -55,10 +69,10 @@ export default function Page() {
                   Schedule Consultation
                 </Link>
                 <Link
-                  href="/practice-areas"
+                  href="/key-specializations"
                   className="group flex items-center gap-4 py-3 md:py-5 text-primary hover:text-tertiary transition-colors font-label text-[10px] md:text-xs uppercase tracking-widest font-bold border-b border-primary/20 hover:border-tertiary"
                 >
-                  Practice Areas
+                  Key Specializations
                   <span className="material-symbols-outlined transition-transform group-hover:translate-x-1 text-sm md:text-base">
                     arrow_forward
                   </span>
@@ -129,7 +143,7 @@ export default function Page() {
                 future problems and ensure long-term success.
               </p>
               <Link
-                href="/practice-areas"
+                href="/key-specializations"
                 className="text-xs font-label uppercase tracking-widest text-primary underline underline-offset-8 decoration-tertiary font-bold hover:text-tertiary transition-colors"
               >
                 Explore Practice Specialties
@@ -157,13 +171,31 @@ export default function Page() {
                 <span className="w-8 md:w-12 h-px bg-tertiary" />
                 Our Expertise
               </span>
-              <h2 className="font-headline text-4xl md:text-6xl text-white italic underline underline-offset-[12px] md:underline-offset-[16px] decoration-tertiary/10 leading-tight">
+              <h2 className="font-headline text-4xl md:text-6xl text-white italic underline underline-offset-[12px] md:underline-offset-[16px] decoration-tertiary/10 leading-tight mb-6">
                 Key Specializations
               </h2>
+              <p className="text-white/70 text-lg md:text-xl max-w-3xl mx-auto font-light leading-relaxed">
+                Discover our focused areas of expertise where we deliver
+                exceptional results
+              </p>
             </div>
           </FadeIn>
 
           <SpecializationsGrid />
+
+          <FadeIn delay={200}>
+            <div className="text-center mt-16 md:mt-20">
+              <Link
+                href="/key-specializations"
+                className="btn-base bg-white text-primary px-10 md:px-12 py-5 md:py-6 hover:bg-tertiary hover:text-white shadow-2xl text-[10px] md:text-xs font-label uppercase tracking-widest font-bold inline-flex items-center gap-3"
+              >
+                View All Specializations
+                <span className="material-symbols-outlined text-sm">
+                  arrow_forward
+                </span>
+              </Link>
+            </div>
+          </FadeIn>
         </div>
       </section>
 
