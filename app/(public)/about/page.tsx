@@ -2,6 +2,7 @@ import FadeIn from "@/app/components/FadeIn";
 import Link from "next/link";
 import TestimonialCarousel from "@/app/components/TestimonialCarousel";
 import PracticeAreasGrid from "@/app/components/PracticeAreasGrid";
+import CrossSectionOverview from "@/app/components/CrossSectionOverview";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -25,9 +26,9 @@ export const metadata: Metadata = {
 
 export default function Page() {
   return (
-    <div className="page-enter bg-surface">
+    <div className="page-enter bg-surface pt-24 md:pt-28">
       {/* ── Hero with Background ─────────────────────────────── */}
-      <section className="relative py-20 md:py-24 mb-8 overflow-hidden pt-24 md:pt-28">
+      <section className="relative py-20 md:py-24 mb-8 overflow-hidden">
         {/* Background Image */}
         <div className="absolute inset-0 pointer-events-none">
           <img
@@ -156,27 +157,108 @@ export default function Page() {
             {/* Bio Content - Left Side on Desktop, Second on Mobile */}
             <FadeIn direction="left" className="lg:order-1">
               <span className="text-[10px] md:text-xs font-label uppercase tracking-[0.3em] text-tertiary mb-6 block font-bold">
-                Editorial Team
+                Advisory Partner
               </span>
               <h2 className="font-headline text-3xl md:text-5xl text-primary mb-6 md:mb-8 italic leading-tight">
                 Dr. Ayodeji J. Jayeoba
               </h2>
               <p className="text-sm md:text-base text-tertiary mb-8 font-medium">
-                Editor, Ph.D.
+                J.S.D. | Advisory Partner, Intellectual Property & Innovation
+                Policy
               </p>
               <div className="space-y-4 md:space-y-6 text-on-surface text-base md:text-lg leading-relaxed font-light">
                 <p>
-                  Dr. Jayeoba oversees editorial content and quality assurance
-                  for TechShield Legal Services, ensuring all published
-                  materials meet the highest standards of legal accuracy and
-                  professional excellence.
+                  Dr. Ayodeji J. Jayeoba advises clients on complex intellectual
+                  property, pharmaceutical regulatory, and competition law
+                  matters, with a focus on market exclusivity, compliance, and
+                  strategic risk management.
                 </p>
                 <p>
-                  With a Ph.D. and extensive background in legal research and
-                  documentation, Dr. Jayeoba brings meticulous attention to
-                  detail and scholarly rigor to the firm's communications and
-                  client-facing materials.
+                  He holds a J.S.D. from the University of the Pacific, McGeorge
+                  School of Law, and brings deep expertise in navigating patent
+                  thickets, lifecycle management strategies, regulatory
+                  exclusivities, and antitrust considerations within the
+                  pharmaceutical sector.
                 </p>
+                <p>
+                  As Founder and Research Lead of PRiMAS, he provides policy and
+                  regulatory insight that informs client strategy, particularly
+                  in areas involving legislative developments, market access,
+                  and competitive positioning.
+                </p>
+                <p>
+                  Dr. Jayeoba's experience includes government advisory work,
+                  policy development, and legal scholarship, enabling him to
+                  deliver commercially focused, forward-looking guidance to
+                  clients operating in highly regulated and innovation-driven
+                  industries.
+                </p>
+              </div>
+            </FadeIn>
+          </div>
+        </div>
+      </section>
+
+      {/* ── Our Team ────────────────────────── */}
+      <section className="py-20 md:py-32 bg-surface-container-low">
+        <div className="max-w-screen-2xl mx-auto px-6 md:px-8 lg:px-12">
+          <FadeIn>
+            <div className="text-center mb-16 md:mb-20">
+              <span className="text-[10px] md:text-xs font-label uppercase tracking-[0.4em] text-tertiary mb-6 block font-bold">
+                Our Team
+              </span>
+              <h2 className="font-headline text-4xl md:text-6xl text-primary italic mb-8">
+                The TechShield Team
+              </h2>
+              <p className="text-lg md:text-xl text-on-surface-variant leading-relaxed font-light max-w-3xl mx-auto">
+                A dedicated team of legal professionals, researchers, and
+                support staff committed to delivering exceptional service and
+                strategic solutions for our clients.
+              </p>
+            </div>
+          </FadeIn>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
+            <FadeIn delay={50}>
+              <div className="relative group overflow-hidden rounded-2xl shadow-xl">
+                <img
+                  src="/assets/about/team.jpeg"
+                  alt="TechShield Legal Team"
+                  className="w-full h-[400px] md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                  <h3 className="text-2xl md:text-3xl font-headline text-white italic mb-3">
+                    Legal Excellence
+                  </h3>
+                  <p className="text-white/90 text-sm md:text-base font-light leading-relaxed">
+                    Our experienced legal professionals bring deep expertise in
+                    corporate law, commercial transactions, and regulatory
+                    compliance, ensuring comprehensive support for your business
+                    needs.
+                  </p>
+                </div>
+              </div>
+            </FadeIn>
+
+            <FadeIn delay={100}>
+              <div className="relative group overflow-hidden rounded-2xl shadow-xl">
+                <img
+                  src="/assets/about/team2.jpeg"
+                  alt="TechShield Support Team"
+                  className="w-full h-[400px] md:h-[500px] object-cover transition-transform duration-700 group-hover:scale-105"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-primary/80 via-primary/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
+                <div className="absolute bottom-0 left-0 right-0 p-8 md:p-10">
+                  <h3 className="text-2xl md:text-3xl font-headline text-white italic mb-3">
+                    Strategic Support
+                  </h3>
+                  <p className="text-white/90 text-sm md:text-base font-light leading-relaxed">
+                    Our research and administrative team provides meticulous
+                    attention to detail, ensuring seamless operations and
+                    exceptional client service at every touchpoint.
+                  </p>
+                </div>
               </div>
             </FadeIn>
           </div>
@@ -197,6 +279,10 @@ export default function Page() {
             </div>
           </FadeIn>
 
+          {/* Cross-Section Overview */}
+          <CrossSectionOverview />
+
+          {/* Individual Testimonials Carousel */}
           <TestimonialCarousel />
         </div>
       </section>

@@ -42,9 +42,9 @@ export default function PracticeAreasPage() {
   ];
 
   return (
-    <div className="page-enter bg-surface">
+    <div className="page-enter bg-surface pt-24 md:pt-28">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-primary pt-24 md:pt-28">
+      <section className="relative py-20 md:py-32 overflow-hidden bg-primary">
         <div className="absolute inset-0 pointer-events-none">
           <img
             src="/assets/practice-areas/bg-hero.jpg"

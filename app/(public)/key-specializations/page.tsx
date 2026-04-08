@@ -27,9 +27,9 @@ export const metadata: Metadata = {
 
 export default function KeySpecializationsPage() {
   return (
-    <div className="page-enter bg-surface">
+    <div className="page-enter bg-surface pt-24 md:pt-28">
       {/* Hero Section */}
-      <section className="relative py-20 md:py-32 overflow-hidden bg-primary pt-32 md:pt-36">
+      <section className="relative py-20 md:py-32 overflow-hidden bg-primary">
         <div className="absolute inset-0 pointer-events-none">
           <img
             src="/assets/practice-areas/bg-hero2.jpg"
